@@ -30,6 +30,7 @@ export default function RootLayout({
           </PageTransition>
           <Footer />
         </div>
+        <Analytics />
       </body>
     </html>
   );
