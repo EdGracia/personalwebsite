@@ -67,7 +67,7 @@ export default function Home() {
           </h1>
           <p className="max-w-xl text-xl leading-relaxed text-zinc-500">
             <Typewriter
-              text="I build things close to the metal — systems, graphics, and tools designed to reach a lot of people."
+              text="A student passionate about all things software who dives deep into low level systems, computer graphics, and game engine architecture."
               delay={800}
               speed={30}
             />
@@ -108,10 +108,6 @@ export default function Home() {
           I&apos;m a Software Engineering student at the University of Miami,
           originally from Houston, Texas. I care about building things at the
           lowest level possible — where performance is a craft, not an afterthought.
-        </p>
-        <p className="mt-4 max-w-xl leading-relaxed text-zinc-500">
-          I speak English and Spanish natively, which has shaped how I think
-          about communication in code as much as in conversation.
         </p>
         <div className="mt-12 border-t border-zinc-100" />
         <div className="mt-10">
