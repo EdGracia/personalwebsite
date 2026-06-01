@@ -6,8 +6,9 @@ export default function Blog() {
 
   return (
     <main className="mx-auto w-full max-w-3xl px-6 py-16">
-      <h1 className="text-3xl font-bold tracking-tight">Blog</h1>
-      <p className="mt-3 text-zinc-500">
+      <p className="text-sm text-emerald-500 dark:text-emerald-400">/* blog */</p>
+      <h1 className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Blog</h1>
+      <p className="mt-3 text-zinc-500 dark:text-zinc-400">
         Thoughts on systems, graphics, and building things.
       </p>
 
@@ -16,15 +17,15 @@ export default function Blog() {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="group flex flex-col gap-1 py-6 px-4 rounded-2xl bg-white border border-zinc-200 transition-colors hover:border-zinc-300 hover:bg-zinc-50"
+            className="group flex flex-col gap-1 py-6 px-4 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 transition-all hover:-translate-y-1 hover:shadow-md hover:border-emerald-500 dark:hover:border-emerald-400"
           >
             <div className="flex items-baseline justify-between gap-4">
-              <span className="font-medium text-zinc-900 group-hover:text-zinc-600 transition-colors">
+              <span className="font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                 {post.title}
               </span>
-              <span className="shrink-0 text-xs font-bold text-zinc-400 uppercase tracking-widest">{post.date}</span>
+              <span className="shrink-0 text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">{post.date}</span>
             </div>
-            <p className="text-sm text-zinc-500">{post.summary}</p>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400">{post.summary}</p>
           </Link>
         ))}
       </div>

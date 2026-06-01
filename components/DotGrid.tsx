@@ -48,7 +48,8 @@ export default function DotGrid() {
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.lineWidth = 1;
-      ctx.strokeStyle = "rgba(160, 160, 168, 0.15)";
+      const isDark = document.documentElement.classList.contains("dark");
+      ctx.strokeStyle = isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(160, 160, 168, 0.15)";
 
       // Vertical lines
       for (let gx = 0; gx <= canvas.width + SPACING; gx += SPACING) {

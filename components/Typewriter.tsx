@@ -24,7 +24,7 @@ export default function Typewriter({ text, delay = 0, speed = 80, showCursor = t
   return (
     <span>
       {displayed}
-      <span className="ml-1 inline-block w-2.5 h-[1em] bg-zinc-900 align-middle" style={{ animation: "blink 1.5s steps(1) infinite" }} />
+      <span className="ml-1 inline-block w-2.5 h-[1em] bg-zinc-900 dark:bg-zinc-100 align-middle" style={{ animation: "blink 1.5s steps(1) infinite" }} />
     </span>
   );
 }
