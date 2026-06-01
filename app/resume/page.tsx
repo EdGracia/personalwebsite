@@ -94,18 +94,9 @@ export default function Resume() {
           <h1 className="text-3xl font-bold tracking-tight">Eduardo Gracia Panini</h1>
           <p className="mt-1 text-zinc-500">Software Engineering Student</p>
         </div>
-        <div className="flex flex-col items-end gap-3">
-          <div className="text-right text-sm text-zinc-400">
-            <p>Exg2332@miami.edu</p>
-            <p>832-533-6990</p>
-          </div>
-          <a
-            href="/resume.pdf"
-            download
-            className="rounded-full bg-zinc-900 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-zinc-700"
-          >
-            Download PDF
-          </a>
+        <div className="text-right text-sm text-zinc-400">
+          <p>Exg2332@miami.edu</p>
+          <p>832-533-6990</p>
         </div>
       </div>
 
