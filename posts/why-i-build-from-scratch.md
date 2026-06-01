@@ -25,3 +25,9 @@ Building from scratch is how you earn that understanding.
 The strange thing is: after spending time at the low level, high-level tools become *more* useful, not less. You use them with intention. You know when to reach for them and when to step around them.
 
 That's the goal — not to avoid abstractions forever, but to never be afraid of what's beneath one.
+
+My goals
+1. Eat healthier
+2. Be stronger
+....* 1. going to the gym
+    2. training hard
