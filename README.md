@@ -16,7 +16,7 @@ Personal portfolio and blog — built with Next.js, TypeScript, and Tailwind CSS
 - Interactive canvas grid with mouse-driven refraction effect
 - Blog powered by local Markdown files — no CMS or database
 - Page transitions, scroll-aware navbar, and OG image support
-- Fully responsive
+- Fully responsive and professional
 
 ## Running Locally
 
