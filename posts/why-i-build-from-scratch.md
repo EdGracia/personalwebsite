@@ -2,6 +2,7 @@
 title: "Why I Build From Scratch"
 date: "2026-05-31"
 summary: "On the value of understanding what's underneath the abstraction."
+author: "Ed Gracia"
 ---
 
 Most people reach for a framework. I reach for a blank file.
@@ -26,8 +27,3 @@ The strange thing is: after spending time at the low level, high-level tools bec
 
 That's the goal — not to avoid abstractions forever, but to never be afraid of what's beneath one.
 
-My goals
-1. Eat healthier
-2. Be stronger
-....* 1. going to the gym
-    2. training hard
