@@ -11,6 +11,7 @@ export type PostMeta = {
   title: string;
   date: string;
   summary: string;
+  author?: string;
 };
 
 export type Post = PostMeta & {
@@ -32,6 +33,7 @@ export function getAllPosts(): PostMeta[] {
         title: data.title,
         date: data.date,
         summary: data.summary,
+        author: data.author,
       };
     })
     .sort((a, b) => (a.date < b.date ? 1 : -1));
@@ -50,6 +52,7 @@ export async function getPost(slug: string): Promise<Post> {
     title: data.title,
     date: data.date,
     summary: data.summary,
+    author: data.author,
     contentHtml,
   };
 }
