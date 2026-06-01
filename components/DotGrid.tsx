@@ -1,0 +1,86 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+
+export default function DotGrid() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const mouse = useRef({ x: -9999, y: -9999 });
+  const raf = useRef<number>(0);
+
+  useEffect(() => {
+    const canvas = canvasRef.current!;
+    const ctx = canvas.getContext("2d")!;
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouse.current = { x: e.clientX, y: e.clientY };
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+
+    const SPACING = 48;
+    const LENS_RADIUS = 140;
+    const LENS_STRENGTH = 28;
+
+    const displace = (x: number, y: number) => {
+      const dx = x - mouse.current.x;
+      const dy = y - mouse.current.y;
+      const d = Math.sqrt(dx * dx + dy * dy);
+      if (d >= LENS_RADIUS || d === 0) return { x, y };
+      const t = 1 - d / LENS_RADIUS;
+      const factor = LENS_STRENGTH * t * t;
+      return {
+        x: x + (dx / d) * factor,
+        y: y + (dy / d) * factor,
+      };
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "rgba(160, 160, 168, 0.15)";
+
+      // Vertical lines
+      for (let gx = 0; gx <= canvas.width + SPACING; gx += SPACING) {
+        ctx.beginPath();
+        for (let y = 0; y <= canvas.height; y += 3) {
+          const p = displace(gx, y);
+          y === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+        }
+        ctx.stroke();
+      }
+
+      // Horizontal lines
+      for (let gy = 0; gy <= canvas.height; gy += SPACING) {
+        ctx.beginPath();
+        for (let x = 0; x <= canvas.width; x += 3) {
+          const p = displace(x, gy);
+          x === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+        }
+        ctx.stroke();
+      }
+
+      raf.current = requestAnimationFrame(draw);
+    };
+
+    raf.current = requestAnimationFrame(draw);
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(raf.current);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="pointer-events-none fixed inset-0 z-0"
+    />
+  );
+}
