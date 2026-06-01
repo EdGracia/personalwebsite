@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import Typewriter from "@/components/Typewriter";
-import { getAllPosts } from "@/lib/posts";
+import Hero from "@/components/Hero";
 import { FiGithub, FiArrowUpRight, FiMail } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
+import { getAllPosts } from "@/lib/posts";
 import {
   SiCplusplus, SiC, SiPython, SiJavascript,
   SiTypescript, SiReact, SiGit, SiLinux,
@@ -62,16 +62,7 @@ export default function Home() {
               <Link href="mailto:Exg2332@miami.edu" className="text-zinc-400 hover:text-zinc-900 transition-colors"><FiMail /></Link>
             </div>
           </div>
-          <h1 className="text-5xl font-bold tracking-tight text-zinc-900">
-            <Typewriter text="Ed Gracia" />
-          </h1>
-          <p className="max-w-xl text-xl leading-relaxed text-zinc-500">
-            <Typewriter
-              text="A student passionate about all things software who dives deep into low level systems, computer graphics, and game engine architecture."
-              delay={800}
-              speed={30}
-            />
-          </p>
+          <Hero />
         </div>
         <div className="mt-10 flex items-center gap-4">
           <a
@@ -89,7 +80,7 @@ export default function Home() {
         </div>
         <div className="mt-20 border-t border-zinc-100" />
         <div className="mt-12">
-          <p className="text-xs font-medium uppercase tracking-widest text-zinc-400">Skills</p>
+          <p className="text-sm text-zinc-400">// skills</p>
           <div className="mt-6 flex flex-wrap gap-4">
             {skills.map(({ icon: Icon, label }) => (
               <div key={label} className="flex items-center gap-2 rounded-full border border-zinc-200 px-4 py-2 text-sm text-zinc-600">
@@ -103,7 +94,8 @@ export default function Home() {
 
       {/* ── About ── */}
       <section id="about" className="py-14 border-t border-zinc-100">
-        <h2 className="text-3xl font-bold tracking-tight">About</h2>
+        <p className="text-sm text-zinc-400">/* about */</p>
+        <h2 className="mt-2 text-3xl font-bold tracking-tight">About</h2>
         <p className="mt-6 max-w-xl leading-relaxed text-zinc-500">
           I&apos;m a Software Engineering student at the University of Miami,
           originally from Houston, Texas. I care about building things at the
@@ -111,7 +103,7 @@ export default function Home() {
         </p>
         <div className="mt-12 border-t border-zinc-100" />
         <div className="mt-10">
-          <p className="text-xs font-medium uppercase tracking-widest text-zinc-400">Currently</p>
+          <p className="text-sm text-zinc-400">// currently</p>
           <div className="mt-6 flex flex-col gap-6">
             {[
               { label: "Building", value: "A 3D game engine from scratch — the foundation for a game I'm designing." },
@@ -129,7 +121,8 @@ export default function Home() {
 
       {/* ── Projects ── */}
       <section id="projects" className="py-14 border-t border-zinc-100">
-        <h2 className="text-3xl font-bold tracking-tight">Projects</h2>
+        <p className="text-sm text-zinc-400">/* projects */</p>
+        <h2 className="mt-2 text-3xl font-bold tracking-tight">Projects</h2>
         <p className="mt-3 text-zinc-500">Things I&apos;ve built or am currently building.</p>
         <div className="mt-12 flex flex-col gap-6">
           {projects.map((project) => (
@@ -159,7 +152,8 @@ export default function Home() {
 
       {/* ── Blog ── */}
       <section id="blog" className="py-14 border-t border-zinc-100">
-        <h2 className="text-3xl font-bold tracking-tight">Blog</h2>
+        <p className="text-sm text-zinc-400">/* blog */</p>
+        <h2 className="mt-2 text-3xl font-bold tracking-tight">Blog</h2>
         <p className="mt-3 text-zinc-500">Thoughts on systems, graphics, and building things.</p>
         <div className="mt-12 flex flex-col gap-4">
           {recentPosts.map((post) => (
@@ -185,7 +179,10 @@ export default function Home() {
       {/* ── Resume ── */}
       <section id="resume" className="py-14 border-t border-zinc-100">
         <div className="flex items-center justify-between">
-          <h2 className="text-3xl font-bold tracking-tight">Resume</h2>
+          <div>
+            <p className="text-sm text-zinc-400">/* resume */</p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight">Resume</h2>
+          </div>
           <Link href="/resume" className="text-sm text-zinc-400 hover:text-zinc-900 transition-colors">
             Full page →
           </Link>

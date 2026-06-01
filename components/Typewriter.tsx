@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-export default function Typewriter({ text, delay = 0, speed = 80 }: { text: string; delay?: number; speed?: number }) {
+export default function Typewriter({ text, delay = 0, speed = 80, showCursor = true }: { text: string; delay?: number; speed?: number; showCursor?: boolean }) {
   const [displayed, setDisplayed] = useState("");
-  const [done, setDone] = useState(false);
 
   useEffect(() => {
     let i = 0;
@@ -14,7 +13,6 @@ export default function Typewriter({ text, delay = 0, speed = 80 }: { text: stri
         i++;
         if (i === text.length) {
           clearInterval(interval);
-          setDone(true);
         }
       }, speed);
       return () => clearInterval(interval);
@@ -26,9 +24,7 @@ export default function Typewriter({ text, delay = 0, speed = 80 }: { text: stri
   return (
     <span>
       {displayed}
-      {!done && (
-        <span className="ml-0.5 inline-block w-0.5 animate-pulse bg-zinc-900">&nbsp;</span>
-      )}
+      <span className="ml-1 inline-block w-2.5 h-[1em] bg-zinc-900 align-middle" style={{ animation: "blink 1.5s steps(1) infinite" }} />
     </span>
   );
 }

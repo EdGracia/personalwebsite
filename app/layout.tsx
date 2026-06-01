@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,7 +7,7 @@ import DotGrid from "@/components/DotGrid";
 import PageTransition from "@/components/PageTransition";
 import { Analytics } from "@vercel/analytics/next"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
   title: "Ed Gracia",
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased scroll-smooth`}>
+    <html lang="en" className={`${jetbrainsMono.variable} h-full antialiased scroll-smooth`}>
       <body className="min-h-full flex flex-col bg-white text-zinc-900">
         <DotGrid />
         <div className="relative z-10 flex flex-1 flex-col">

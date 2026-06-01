@@ -13,6 +13,26 @@
 }
 
 
+@keyframes glitch {
+  0%   { transform: translate(0);     text-shadow: none; }
+  10%  { transform: translate(-6px, 0);  text-shadow: 6px 0 #a1a1aa, -2px 0 #e4e4e7; }
+  25%  { transform: translate(6px, 0);   text-shadow: -6px 0 #a1a1aa, 2px 0 #e4e4e7; }
+  40%  { transform: translate(-4px, 0);  text-shadow: 4px 0 #a1a1aa; }
+  55%  { transform: translate(4px, 0);   text-shadow: -4px 0 #a1a1aa; }
+  70%  { transform: translate(-2px, 0);  text-shadow: 2px 0 #a1a1aa; }
+  85%  { transform: translate(2px, 0);   text-shadow: none; }
+  100% { transform: translate(0);     text-shadow: none; }
+}
+
+.glitch-active {
+  animation: glitch 0.5s ease forwards;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -32,9 +52,40 @@ body {
   background: linear-gradient(160deg, #e8e8ec 0%, #f4f4f6 30%, #ffffff 70%);
   background-attachment: fixed;
   color: var(--foreground);
-  font-family: var(--font-inter), Arial, sans-serif;
+  font-family: var(--font-mono), monospace;
 }
 
+
+.post-content {
+  counter-reset: line-num;
+  border-left: 1px solid #e4e4e7;
+  padding-left: 2rem;
+}
+
+.post-content > p,
+.post-content > h1,
+.post-content > h2,
+.post-content > h3,
+.post-content > ul,
+.post-content > ol {
+  counter-increment: line-num;
+  position: relative;
+}
+
+.post-content > p::before,
+.post-content > h1::before,
+.post-content > h2::before,
+.post-content > h3::before,
+.post-content > ul::before,
+.post-content > ol::before {
+  content: counter(line-num, decimal-leading-zero);
+  position: absolute;
+  left: -3.5rem;
+  top: 0.15em;
+  font-size: 0.7rem;
+  color: #d4d4d8;
+  user-select: none;
+}
 
 .post-content h1,
 .post-content h2,
@@ -96,4 +147,28 @@ body {
   background: none;
   padding: 0;
   color: inherit;
+}
+
+.post-content pre {
+  position: relative;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.75rem;
+  font-size: 0.7rem;
+  font-family: inherit;
+  color: #71717a;
+  background: none;
+  border: 1px solid #3f3f46;
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.copy-btn:hover {
+  color: #e4e4e7;
+  border-color: #71717a;
 }

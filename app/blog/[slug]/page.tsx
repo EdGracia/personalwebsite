@@ -1,5 +1,6 @@
 import { getPost, getAllPosts } from "@/lib/posts";
 import Link from "next/link";
+import CopyButton from "@/components/CopyButton";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -38,6 +39,7 @@ export default async function PostPage({ params }: Props) {
         className="post-content mt-8"
         dangerouslySetInnerHTML={{ __html: post.contentHtml }}
       />
+      <CopyButton />
 
     </main>
   );
