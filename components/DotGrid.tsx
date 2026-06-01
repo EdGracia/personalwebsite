@@ -21,7 +21,12 @@ export default function DotGrid() {
     const handleMouseMove = (e: MouseEvent) => {
       mouse.current = { x: e.clientX, y: e.clientY };
     };
+    const handleTouchMove = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      mouse.current = { x: touch.clientX, y: touch.clientY };
+    };
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
 
     const SPACING = 48;
     const LENS_RADIUS = 140;
@@ -73,6 +78,7 @@ export default function DotGrid() {
     return () => {
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
       cancelAnimationFrame(raf.current);
     };
   }, []);

@@ -32,7 +32,7 @@ export default function Projects() {
         {projects.map((project) => (
           <div
             key={project.title}
-            className="group rounded-2xl border border-zinc-200 p-6 transition-colors hover:border-zinc-300 hover:bg-zinc-50"
+            className="group rounded-2xl border border-zinc-200 bg-white p-6 transition-colors hover:border-zinc-300 hover:bg-zinc-50"
           >
             {/* Header */}
             <div className="flex items-start justify-between gap-4">

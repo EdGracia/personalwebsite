@@ -26,7 +26,7 @@ export default async function PostPage({ params }: Props) {
 
       {/* Header */}
       <div className="mt-8">
-        <p className="text-xs text-zinc-400">{post.date}</p>
+        <p className="text-xs font-bold text-zinc-400 uppercase tracking-widest">{post.date}</p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight">{post.title}</h1>
         <p className="mt-3 text-zinc-500">{post.summary}</p>
       </div>
