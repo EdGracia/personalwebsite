@@ -13,6 +13,9 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mon
 export const metadata: Metadata = {
   title: "Ed Gracia",
   description: "Software engineer, student, and builder.",
+  verification: {
+    google: "tfEojaryUZcDOgvXxdeD0kzK3hV5AcbM9M0s6AO1_-4",
+  },
 };
 
 export default function RootLayout({
