@@ -12,10 +12,10 @@ export default function Hero() {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <h1 className="text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+      <h1 className="text-6xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
         <Typewriter text="Ed Gracia" showCursor={hovered} />
       </h1>
-      <p className="max-w-xl text-xl leading-relaxed text-zinc-500 dark:text-zinc-400">
+      <p className="max-w-xl text-lg leading-loose text-zinc-500 dark:text-zinc-400">
         <Typewriter
           text="A student passionate about all things software who dives deep into low level systems, computer graphics, and game engine architecture."
           delay={800}

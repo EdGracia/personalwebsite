@@ -72,14 +72,13 @@ const awards = [
   },
 ];
 
-// Reusable section header
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
     <div className="mb-6 flex items-center gap-4">
-      <p className="text-xs font-medium uppercase tracking-widest text-zinc-400 whitespace-nowrap">
+      <p className="text-xs font-medium uppercase tracking-widest text-emerald-500 dark:text-emerald-400 whitespace-nowrap">
         {children}
       </p>
-      <div className="h-px flex-1 bg-zinc-100" />
+      <div className="h-px flex-1 bg-zinc-100 dark:bg-zinc-800" />
     </div>
   );
 }
@@ -88,13 +87,12 @@ export default function Resume() {
   return (
     <main className="mx-auto w-full max-w-3xl px-6 py-16">
 
-      {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Eduardo Gracia Panini</h1>
-          <p className="mt-1 text-zinc-500">Software Engineering Student</p>
+          <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Eduardo Gracia Panini</h1>
+          <p className="mt-1 text-zinc-500 dark:text-zinc-400">Software Engineering Student</p>
         </div>
-        <div className="text-right text-sm text-zinc-400">
+        <div className="text-right text-sm text-zinc-400 dark:text-zinc-500">
           <p>Exg2332@miami.edu</p>
           <p>832-533-6990</p>
         </div>
@@ -102,37 +100,35 @@ export default function Resume() {
 
       <div className="mt-12 flex flex-col gap-12">
 
-        {/* Education */}
         <section>
           <SectionHeading>Education</SectionHeading>
           {education.map((e) => (
             <div key={e.degree} className="flex justify-between gap-4">
               <div>
-                <p className="font-medium text-zinc-900">{e.degree}</p>
-                <p className="text-sm text-zinc-500">{e.school}</p>
+                <p className="font-medium text-zinc-900 dark:text-zinc-100">{e.degree}</p>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400">{e.school}</p>
                 {e.notes.map((n) => (
-                  <p key={n} className="mt-1 text-sm text-zinc-400">{n}</p>
+                  <p key={n} className="mt-1 text-sm text-zinc-400 dark:text-zinc-500">{n}</p>
                 ))}
               </div>
-              <p className="shrink-0 text-sm text-zinc-400">{e.date}</p>
+              <p className="shrink-0 text-sm text-zinc-400 dark:text-zinc-500">{e.date}</p>
             </div>
           ))}
         </section>
 
-        {/* Experience */}
         <section>
           <SectionHeading>Experience</SectionHeading>
           <div className="flex flex-col gap-6">
             {experience.map((e) => (
               <div key={e.title}>
                 <div className="flex items-baseline justify-between gap-4">
-                  <p className="font-medium text-zinc-900">{e.title}</p>
-                  <p className="shrink-0 text-sm text-zinc-400">{e.date}</p>
+                  <p className="font-medium text-zinc-900 dark:text-zinc-100">{e.title}</p>
+                  <p className="shrink-0 text-sm text-zinc-400 dark:text-zinc-500">{e.date}</p>
                 </div>
-                <p className="text-sm text-zinc-500">{e.org}</p>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400">{e.org}</p>
                 <ul className="mt-2 flex flex-col gap-1">
                   {e.bullets.map((b) => (
-                    <li key={b} className="text-sm text-zinc-500 pl-4 relative before:absolute before:left-1 before:content-['–']">
+                    <li key={b} className="text-sm text-zinc-500 dark:text-zinc-400 pl-4 relative before:absolute before:left-1 before:content-['–']">
                       {b}
                     </li>
                   ))}
@@ -142,19 +138,18 @@ export default function Resume() {
           </div>
         </section>
 
-        {/* Projects */}
         <section>
           <SectionHeading>Projects</SectionHeading>
           <div className="flex flex-col gap-6">
             {projects.map((p) => (
               <div key={p.title}>
                 <div className="flex items-baseline gap-2">
-                  <p className="font-medium text-zinc-900">{p.title}</p>
-                  <p className="text-sm text-zinc-400">{p.tech}</p>
+                  <p className="font-medium text-zinc-900 dark:text-zinc-100">{p.title}</p>
+                  <p className="text-sm text-zinc-400 dark:text-zinc-500">{p.tech}</p>
                 </div>
                 <ul className="mt-2 flex flex-col gap-1">
                   {p.bullets.map((b) => (
-                    <li key={b} className="text-sm text-zinc-500 pl-4 relative before:absolute before:left-1 before:content-['–']">
+                    <li key={b} className="text-sm text-zinc-500 dark:text-zinc-400 pl-4 relative before:absolute before:left-1 before:content-['–']">
                       {b}
                     </li>
                   ))}
@@ -164,41 +159,38 @@ export default function Resume() {
           </div>
         </section>
 
-        {/* Skills */}
         <section>
           <SectionHeading>Skills</SectionHeading>
           <div className="flex flex-col gap-3">
             {Object.entries(skills).map(([category, items]) => (
               <div key={category} className="flex gap-8">
-                <span className="w-24 shrink-0 text-sm font-medium text-zinc-900">{category}</span>
-                <span className="text-sm text-zinc-500">{items.join(", ")}</span>
+                <span className="w-24 shrink-0 text-sm font-medium text-zinc-900 dark:text-zinc-100">{category}</span>
+                <span className="text-sm text-zinc-500 dark:text-zinc-400">{items.join(", ")}</span>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Coursework */}
         <section>
           <SectionHeading>Coursework</SectionHeading>
           <div className="flex flex-col gap-1">
             {coursework.map((c) => (
-              <p key={c} className="text-sm text-zinc-500">{c}</p>
+              <p key={c} className="text-sm text-zinc-500 dark:text-zinc-400">{c}</p>
             ))}
           </div>
         </section>
 
-        {/* Awards */}
         <section>
           <SectionHeading>Awards</SectionHeading>
           <div className="flex flex-col gap-4">
             {awards.map((a) => (
               <div key={a.title} className="flex justify-between gap-4">
                 <div>
-                  <p className="font-medium text-zinc-900">{a.title}</p>
-                  <p className="text-sm text-zinc-500">{a.org}</p>
-                  <p className="mt-1 text-sm text-zinc-400">{a.detail}</p>
+                  <p className="font-medium text-zinc-900 dark:text-zinc-100">{a.title}</p>
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400">{a.org}</p>
+                  <p className="mt-1 text-sm text-zinc-400 dark:text-zinc-500">{a.detail}</p>
                 </div>
-                <p className="shrink-0 text-sm text-zinc-400">{a.date}</p>
+                <p className="shrink-0 text-sm text-zinc-400 dark:text-zinc-500">{a.date}</p>
               </div>
             ))}
           </div>
