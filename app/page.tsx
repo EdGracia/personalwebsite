@@ -5,21 +5,37 @@ import FadeIn from "@/components/FadeIn";
 import GitHubGraph from "@/components/GitHubGraph";
 import { FiGithub, FiArrowUpRight, FiMail } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, formatDate } from "@/lib/posts";
 import {
   SiCplusplus, SiC, SiPython, SiJavascript,
-  SiTypescript, SiReact, SiGit, SiLinux,
+  SiTypescript, SiReact, SiNextdotjs, SiGit, SiLinux,
 } from "react-icons/si";
 
-const skills = [
-  { icon: SiCplusplus, label: "C++" },
-  { icon: SiC, label: "C" },
-  { icon: SiPython, label: "Python" },
-  { icon: SiJavascript, label: "JavaScript" },
-  { icon: SiTypescript, label: "TypeScript" },
-  { icon: SiReact, label: "React" },
-  { icon: SiGit, label: "Git" },
-  { icon: SiLinux, label: "Linux" },
+const skillGroups = [
+  {
+    category: "lang",
+    items: [
+      { icon: SiCplusplus, label: "C++" },
+      { icon: SiC, label: "C" },
+      { icon: SiPython, label: "Python" },
+      { icon: SiJavascript, label: "JavaScript" },
+      { icon: SiTypescript, label: "TypeScript" },
+    ],
+  },
+  {
+    category: "web",
+    items: [
+      { icon: SiReact, label: "React" },
+      { icon: SiNextdotjs, label: "Next.js" },
+    ],
+  },
+  {
+    category: "tools",
+    items: [
+      { icon: SiGit, label: "Git" },
+      { icon: SiLinux, label: "Linux" },
+    ],
+  },
 ];
 
 const projects = [
@@ -87,12 +103,17 @@ export default function Home() {
         <div className="mt-20 border-t border-zinc-100 dark:border-zinc-800" />
         <div className="mt-12">
           <p className="text-sm text-emerald-500 dark:text-emerald-400">// skills</p>
-          <div className="mt-6 flex flex-wrap gap-4">
-            {skills.map(({ icon: Icon, label }) => (
-              <div key={label} className="flex items-center gap-2 rounded-full border border-zinc-200 dark:border-zinc-700 px-4 py-2 text-sm text-zinc-600 dark:text-zinc-400 hover:border-emerald-500 dark:hover:border-emerald-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
-                <Icon className="text-base" />
-                {label}
-              </div>
+          <div className="mt-6 flex flex-wrap items-center gap-y-3">
+            {skillGroups.flatMap(({ items }) => items).map(({ icon: Icon, label }, i, arr) => (
+              <span key={label} className="flex items-center">
+                <span className="flex items-center gap-1.5 text-base text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
+                  <Icon className="text-base shrink-0" />
+                  {label}
+                </span>
+                {i < arr.length - 1 && (
+                  <span className="mx-3 text-xl text-zinc-300 dark:text-zinc-600">•</span>
+                )}
+              </span>
             ))}
           </div>
         </div>
@@ -175,7 +196,7 @@ export default function Home() {
                 className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 flex items-center justify-between transition-all hover:-translate-y-1 hover:shadow-md hover:border-emerald-500 dark:hover:border-emerald-400"
               >
                 <div>
-                  <p className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">{post.date}</p>
+                  <p className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">{formatDate(post.date)}</p>
                   <p className="mt-1 font-medium text-zinc-900 dark:text-zinc-100">{post.title}</p>
                   <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{post.summary}</p>
                 </div>

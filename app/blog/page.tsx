@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, formatDate } from "@/lib/posts";
 
 export default function Blog() {
   const posts = getAllPosts();
@@ -23,7 +23,7 @@ export default function Blog() {
               <span className="font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                 {post.title}
               </span>
-              <span className="shrink-0 text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">{post.date}</span>
+              <span className="shrink-0 text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">{formatDate(post.date)}</span>
             </div>
             <p className="text-sm text-zinc-500 dark:text-zinc-400">{post.summary}</p>
           </Link>

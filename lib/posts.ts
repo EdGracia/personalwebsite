@@ -6,6 +6,11 @@ import html from "remark-html";
 
 const postsDir = path.join(process.cwd(), "posts");
 
+export function formatDate(date: string) {
+  const [y, m, d] = date.split("-");
+  return `${m}/${d}/${y}`;
+}
+
 export type PostMeta = {
   slug: string;
   title: string;

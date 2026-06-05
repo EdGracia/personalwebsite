@@ -1,4 +1,4 @@
-import { getPost, getAllPosts } from "@/lib/posts";
+import { getPost, getAllPosts, formatDate } from "@/lib/posts";
 import Link from "next/link";
 import CopyButton from "@/components/CopyButton";
 
@@ -22,7 +22,7 @@ export default async function PostPage({ params }: Props) {
       </Link>
 
       <div className="mt-8">
-        <p className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">{post.date}</p>
+        <p className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">{formatDate(post.date)}</p>
         <h1 className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">{post.title}</h1>
         <p className="mt-3 text-zinc-500 dark:text-zinc-400">{post.summary}</p>
         {post.author && (
