@@ -67,7 +67,7 @@ export default function Home() {
       {/* ── 01 Capabilities ── */}
       <section id="capabilities" className="py-24 border-t border-border-subtle">
         <RevealGroup>
-          <SectionHeader number="01" title="Capabilities" />
+          <SectionHeader glyph="capabilities" title="Capabilities" />
           <div className="grid grid-cols-1 gap-12 sm:grid-cols-3">
             {skillGroups.map(({ category, items }) => (
               <div key={category}>
@@ -91,7 +91,7 @@ export default function Home() {
       {/* ── 02 About ── */}
       <section id="about" className="py-24 border-t border-border-subtle">
         <RevealGroup>
-          <SectionHeader number="02" title="About" />
+          <SectionHeader glyph="about" title="About" />
           <div className="grid grid-cols-1 gap-12 sm:grid-cols-[auto_1fr]">
             <div className="flex flex-col items-start gap-6">
               <Image
@@ -137,7 +137,7 @@ export default function Home() {
       {/* ── 03 Projects ── */}
       <section id="projects" className="py-24 border-t border-border-subtle">
         <RevealGroup>
-          <SectionHeader number="03" title="Projects" />
+          <SectionHeader glyph="projects" title="Projects" />
         </RevealGroup>
         <div className="flex flex-col gap-6">
           {projects.map((project) => (
@@ -180,7 +180,7 @@ export default function Home() {
       {/* ── 04 Blog ── */}
       <section id="blog" className="py-24 border-t border-border-subtle">
         <RevealGroup>
-          <SectionHeader number="04" title="Blog" />
+          <SectionHeader glyph="blog" title="Blog" />
           <div className="flex flex-col">
             {recentPosts.map((post) => (
               <Link
@@ -210,7 +210,7 @@ export default function Home() {
       <section id="resume" className="py-24 border-t border-border-subtle">
         <RevealGroup>
           <div className="flex items-center justify-between mb-10">
-            <SectionHeader number="05" title="Resume" />
+            <SectionHeader glyph="resume" title="Resume" />
             <Link href="/resume" className="font-display text-sm text-text-tertiary transition-colors hover:text-accent">
               Full page →
             </Link>
