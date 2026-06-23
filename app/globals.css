@@ -108,6 +108,11 @@
   100% { transform: scaleY(1); opacity: 0; }
 }
 
+@keyframes heatShimmer {
+  0%, 100% { backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); }
+  50% { backdrop-filter: blur(1.5px); -webkit-backdrop-filter: blur(1.5px); }
+}
+
 .page-transition {
   animation: fadeIn 0.35s ease-out forwards;
 }
