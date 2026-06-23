@@ -45,8 +45,11 @@ const translations: Record<Locale, Record<string, string>> = {
     "projects.engine.description": "A from-scratch 3D engine built in C++ using raylib. Handles rendering, scene management, and serves as the foundation for an original game. Actively in development.",
     "projects.platformer.title": "2D Platformer",
     "projects.platformer.description": "A 2D platformer built in C++ with raylib. Custom physics, collision detection, and sprite handling — written without a game framework to stay close to the metal.",
+    "projects.ensel.title": "Ensel Technologies",
+    "projects.ensel.description": "Corporate website for an ISO-certified membrane switch manufacturer serving medical, industrial, and food processing OEMs. Built with Next.js and hosted on Vercel.",
     "projects.status.inProgress": "In Progress",
     "projects.status.incomplete": "Incomplete",
+    "projects.status.complete": "Complete",
 
     // Blog section (homepage + blog page)
     "blog.title": "Blog",
@@ -82,6 +85,8 @@ const translations: Record<Locale, Record<string, string>> = {
     "projectsPage.engine.description": "A from-scratch 3D engine built in C++ using raylib. Handles rendering, scene management, and serves as the foundation for an original game. Actively in development.",
     "projectsPage.platformer.title": "2D Platformer",
     "projectsPage.platformer.description": "A 2D platformer built in C++ with raylib. Custom physics, collision detection, and sprite handling — written without a game framework to stay close to the metal.",
+    "projectsPage.ensel.title": "Ensel Technologies",
+    "projectsPage.ensel.description": "Corporate website for an ISO-certified membrane switch manufacturer serving medical, industrial, and food processing OEMs. Built with Next.js and hosted on Vercel.",
 
     // Resume page
     "resumePage.subtitle": "Software Engineering Student",
@@ -149,8 +154,11 @@ const translations: Record<Locale, Record<string, string>> = {
     "projects.engine.description": "Un motor 3D construido desde cero en C++ con raylib. Maneja renderizado, gestión de escenas y sirve como base para un juego original. En desarrollo activo.",
     "projects.platformer.title": "Plataformas 2D",
     "projects.platformer.description": "Un juego de plataformas 2D construido en C++ con raylib. Físicas propias, detección de colisiones y manejo de sprites — escrito sin un framework de juegos para estar cerca del metal.",
+    "projects.ensel.title": "Ensel Technologies",
+    "projects.ensel.description": "Sitio web corporativo para un fabricante certificado ISO de switches de membrana que sirve a OEMs médicos, industriales y de procesamiento de alimentos. Construido con Next.js y alojado en Vercel.",
     "projects.status.inProgress": "En progreso",
     "projects.status.incomplete": "Incompleto",
+    "projects.status.complete": "Completo",
 
     // Blog section (homepage + blog page)
     "blog.title": "Blog",
@@ -186,6 +194,8 @@ const translations: Record<Locale, Record<string, string>> = {
     "projectsPage.engine.description": "Un motor 3D construido desde cero en C++ con raylib. Maneja renderizado, gestión de escenas y sirve como base para un juego original. En desarrollo activo.",
     "projectsPage.platformer.title": "Plataformas 2D",
     "projectsPage.platformer.description": "Un juego de plataformas 2D construido en C++ con raylib. Físicas propias, detección de colisiones y manejo de sprites — escrito sin un framework de juegos para estar cerca del metal.",
+    "projectsPage.ensel.title": "Ensel Technologies",
+    "projectsPage.ensel.description": "Sitio web corporativo para un fabricante certificado ISO de switches de membrana que sirve a OEMs médicos, industriales y de procesamiento de alimentos. Construido con Next.js y alojado en Vercel.",
 
     // Resume page
     "resumePage.subtitle": "Estudiante de Ingeniería de Software",

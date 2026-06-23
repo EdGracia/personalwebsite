@@ -16,6 +16,10 @@
   --accent-glow: rgba(26, 111, 181, 0.12);
   --signal: #d4763a;
   --signal-bg: rgba(212, 118, 58, 0.1);
+  --status-success: #2e8b57;
+  --status-success-bg: rgba(46, 139, 87, 0.1);
+  --status-danger: #c0392b;
+  --status-danger-bg: rgba(192, 57, 43, 0.1);
 }
 
 .dark {
@@ -33,6 +37,10 @@
   --accent-glow: rgba(212, 162, 76, 0.15);
   --signal: #e8724a;
   --signal-bg: rgba(232, 114, 74, 0.1);
+  --status-success: #4ade80;
+  --status-success-bg: rgba(74, 222, 128, 0.1);
+  --status-danger: #f87171;
+  --status-danger-bg: rgba(248, 113, 113, 0.1);
 }
 
 @theme inline {
@@ -50,6 +58,10 @@
   --color-accent-glow: var(--accent-glow);
   --color-signal: var(--signal);
   --color-signal-bg: var(--signal-bg);
+  --color-status-success: var(--status-success);
+  --color-status-success-bg: var(--status-success-bg);
+  --color-status-danger: var(--status-danger);
+  --color-status-danger-bg: var(--status-danger-bg);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
   --font-mono: var(--font-mono);

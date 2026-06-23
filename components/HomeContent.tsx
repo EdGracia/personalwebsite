@@ -10,7 +10,7 @@ import TerrainDivider from "@/components/TerrainDivider";
 import Glyph from "@/components/Glyph";
 import SpiceBloom from "@/components/SpiceBloom";
 import HeroSection from "@/components/HeroSection";
-import { FiGithub, FiArrowUpRight } from "react-icons/fi";
+import { FiGithub, FiArrowUpRight, FiGlobe } from "react-icons/fi";
 import { useTranslation } from "@/lib/translations";
 import {
   SiCplusplus, SiC, SiPython, SiJavascript,
@@ -65,6 +65,13 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
   ];
 
   const projects = [
+    {
+      title: t("projects.ensel.title"),
+      description: t("projects.ensel.description"),
+      tags: ["Next.js", "React", "TypeScript", "Vercel"],
+      status: t("projects.status.complete"),
+      link: "https://enseltech.com",
+    },
     {
       title: t("projects.engine.title"),
       description: t("projects.engine.description"),
@@ -196,13 +203,13 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
                       <StatusBadge status={project.status} />
                     </div>
                     <Link
-                      href={project.github}
+                      href={project.github ?? project.link!}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`${project.title} on GitHub`}
+                      aria-label={project.github ? `${project.title} on GitHub` : `${project.title} website`}
                       className="flex shrink-0 items-center gap-1 text-sm text-text-tertiary transition-all duration-200 hover:text-accent"
                     >
-                      <FiGithub className="text-base" />
+                      {project.github ? <FiGithub className="text-base" /> : <FiGlobe className="text-base" />}
                       <FiArrowUpRight className="text-xs transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </Link>
                   </div>
