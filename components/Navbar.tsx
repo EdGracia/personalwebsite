@@ -18,7 +18,7 @@ export default function Navbar() {
 
   const links = [
     { href: "/#about", label: t("nav.about"), id: "about" },
-    { href: "/#projects", label: t("nav.projects"), id: "projects" },
+    { href: "/projects", label: t("nav.projects"), id: "projects" },
     { href: "/blog", label: t("nav.blog"), id: "blog" },
     { href: "/#resume", label: t("nav.resume"), id: "resume" },
   ];
@@ -41,8 +41,9 @@ export default function Navbar() {
   }, [isHome]);
 
   const isActive = (link: (typeof links)[0]) => {
+    if (!link.href.startsWith("/#") && pathname.startsWith(link.href)) return true;
     if (isHome) return activeId === link.id;
-    return pathname === link.href;
+    return false;
   };
 
   return (

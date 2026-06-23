@@ -42,16 +42,16 @@ export default function Projects() {
         </p>
       </RevealGroup>
 
-      <div className="mt-12 flex flex-col gap-6">
+      <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
         {projects.map((project) => (
           <RevealGroup key={project.title}>
-            <div className="group relative overflow-hidden rounded-xl border border-border-subtle bg-bg-elevated p-6 transition-all duration-300 hover:border-border-active hover:shadow-lg hover:shadow-accent-glow">
+            <div className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border-subtle bg-bg-elevated p-8 transition-all duration-300 hover:border-border-active hover:shadow-lg hover:shadow-accent-glow">
               <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-accent origin-top transition-transform duration-300 scale-y-0 group-hover:scale-y-100" />
               <div className="absolute inset-0 bg-gradient-to-r from-accent-glow to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <div className="relative">
+              <div className="relative flex flex-1 flex-col">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <h2 className="font-display text-lg font-semibold text-text-primary transition-colors duration-200 group-hover:text-accent">{project.title}</h2>
+                    <h2 className="font-display text-xl font-semibold text-text-primary transition-colors duration-200 group-hover:text-accent">{project.title}</h2>
                     <StatusBadge status={project.status} />
                   </div>
                   <Link
@@ -61,16 +61,16 @@ export default function Projects() {
                     aria-label={project.github ? `${project.title} on GitHub` : `${project.title} website`}
                     className="flex shrink-0 items-center gap-1 text-sm text-text-tertiary transition-all duration-200 hover:text-accent"
                   >
-                    {project.github ? <FiGithub className="text-base" /> : <FiGlobe className="text-base" />}
+                    {project.github ? <FiGithub className="text-lg" /> : <FiGlobe className="text-lg" />}
                     <FiArrowUpRight className="text-xs transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                 </div>
 
-                <p className="mt-3 font-body text-sm leading-relaxed text-text-secondary">
+                <p className="mt-4 flex-1 font-body text-sm leading-relaxed text-text-secondary">
                   {project.description}
                 </p>
 
-                <div className="mt-4 flex flex-wrap gap-2">
+                <div className="mt-6 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
