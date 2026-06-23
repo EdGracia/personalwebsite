@@ -37,9 +37,9 @@ export default async function GitHubGraph() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
-          className="text-text-tertiary transition-colors duration-200 hover:text-accent"
+          className="text-text-tertiary transition-all duration-200 hover:text-accent hover:scale-125"
         >
-          <FiGithub className="text-sm" />
+          <FiGithub className="text-base" />
         </Link>
         <p className="font-mono text-[11px] uppercase tracking-[0.05em] text-text-tertiary">
           GitHub Activity

@@ -86,44 +86,9 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
 
       <HeroSection />
 
-      {/* ── Capabilities — Bento Grid ── */}
-      <div className="mx-auto max-w-5xl px-6">
-        <TerrainDivider seed={1} />
-      </div>
-      <section id="capabilities" className="mx-auto max-w-5xl px-6 py-24">
-        <RevealGroup>
-          <SectionHeader glyph="capabilities" title={t("capabilities.title")} />
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {skillGroups.map(({ category, glyph, items, span }) => (
-              <SpiceBloom
-                key={category}
-                className={span ?? ""}
-              >
-                <div className="group h-full rounded-xl border border-border-subtle bg-bg-surface/50 p-6 transition-all duration-300 hover:border-border-active hover:bg-bg-surface">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Glyph name={glyph} size={14} className="text-text-tertiary transition-colors duration-200 group-hover:text-accent" />
-                    <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.05em] text-text-tertiary">
-                      {category}
-                    </h3>
-                  </div>
-                  <div className="flex flex-col gap-2.5">
-                    {items.map(({ icon: Icon, label }) => (
-                      <span key={label} className="flex items-center gap-2.5 font-mono text-sm text-text-secondary transition-all duration-200 hover:text-text-primary hover:translate-x-1 cursor-default">
-                        <Icon className="text-sm shrink-0 text-text-tertiary" />
-                        {label}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </SpiceBloom>
-            ))}
-          </div>
-        </RevealGroup>
-      </section>
-
       {/* ── About — Asymmetric Editorial ── */}
       <div className="mx-auto max-w-5xl px-6">
-        <TerrainDivider seed={3} />
+        <TerrainDivider seed={1} />
       </div>
       <section id="about" className="py-24">
         <div className="mx-auto max-w-5xl px-6">
@@ -133,7 +98,7 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
         </div>
         <RevealGroup>
           <div className="mx-auto max-w-5xl px-6 grid grid-cols-1 gap-12 sm:grid-cols-[auto_1fr]">
-            <div className="flex flex-col items-start gap-6 sm:-ml-10">
+            <div className="flex flex-col items-start gap-6">
               <Image
                 src="/headshot.png"
                 alt="Ed Gracia"
@@ -167,6 +132,41 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
               </p>
               {githubGraph}
             </div>
+          </div>
+        </RevealGroup>
+      </section>
+
+      {/* ── Capabilities — Bento Grid ── */}
+      <div className="mx-auto max-w-5xl px-6">
+        <TerrainDivider seed={3} />
+      </div>
+      <section id="capabilities" className="mx-auto max-w-5xl px-6 py-24">
+        <RevealGroup>
+          <SectionHeader glyph="capabilities" title={t("capabilities.title")} />
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {skillGroups.map(({ category, glyph, items, span }) => (
+              <SpiceBloom
+                key={category}
+                className={span ?? ""}
+              >
+                <div className="group h-full rounded-xl border border-border-subtle bg-bg-surface/50 p-6 transition-all duration-300 hover:border-border-active hover:bg-bg-surface">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Glyph name={glyph} size={14} className="text-text-tertiary transition-colors duration-200 group-hover:text-accent" />
+                    <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.05em] text-text-tertiary">
+                      {category}
+                    </h3>
+                  </div>
+                  <div className="flex flex-col gap-2.5">
+                    {items.map(({ icon: Icon, label }) => (
+                      <span key={label} className="flex items-center gap-2.5 font-mono text-sm text-text-secondary transition-all duration-200 hover:text-text-primary hover:translate-x-1 cursor-default">
+                        <Icon className="text-sm shrink-0 text-text-tertiary" />
+                        {label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </SpiceBloom>
+            ))}
           </div>
         </RevealGroup>
       </section>
