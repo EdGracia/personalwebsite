@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-export default function DotGrid() {
+export default function AmbientField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouse = useRef({ x: -9999, y: -9999 });
   const raf = useRef<number>(0);
@@ -51,7 +51,6 @@ export default function DotGrid() {
       const isDark = document.documentElement.classList.contains("dark");
       ctx.strokeStyle = isDark ? "rgba(255, 255, 255, 0.06)" : "rgba(160, 160, 168, 0.15)";
 
-      // Vertical lines
       for (let gx = 0; gx <= canvas.width + SPACING; gx += SPACING) {
         ctx.beginPath();
         for (let y = 0; y <= canvas.height; y += 3) {
@@ -61,8 +60,7 @@ export default function DotGrid() {
         ctx.stroke();
       }
 
-      // Horizontal lines
-      for (let gy = 0; gy <= canvas.height; gy += SPACING) {
+      for (let gy = 0; gy <= canvas.height + SPACING; gy += SPACING) {
         ctx.beginPath();
         for (let x = 0; x <= canvas.width; x += 3) {
           const p = displace(x, gy);

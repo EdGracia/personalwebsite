@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FiGithub, FiArrowUpRight } from "react-icons/fi";
-import FadeIn from "@/components/FadeIn";
+import RevealGroup from "@/components/RevealGroup";
+import StatusBadge from "@/components/StatusBadge";
 
 const projects = [
   {
@@ -23,61 +24,55 @@ const projects = [
 
 export default function Projects() {
   return (
-    <main className="mx-auto w-full max-w-3xl px-6 py-16">
-
-      <FadeIn>
-        <p className="text-sm text-emerald-500 dark:text-emerald-400">/* projects */</p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Projects</h1>
-        <p className="mt-3 text-zinc-500 dark:text-zinc-400">
+    <main className="mx-auto w-full max-w-5xl px-6 py-24">
+      <RevealGroup>
+        <h1 className="font-display text-4xl font-bold tracking-tight text-text-primary">Projects</h1>
+        <p className="mt-3 font-body text-text-secondary">
           Things I&apos;ve built or am currently building.
         </p>
-      </FadeIn>
+      </RevealGroup>
 
       <div className="mt-12 flex flex-col gap-6">
         {projects.map((project) => (
-          <FadeIn key={project.title}>
-            <div className="group rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-zinc-900/50 hover:border-emerald-500 dark:hover:border-emerald-400">
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex items-center gap-3">
-                  <h2 className="font-semibold text-zinc-900 dark:text-zinc-100">{project.title}</h2>
-                  <span
-                    className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                      project.status === "In Progress"
-                        ? "bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400"
-                        : "bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400"
-                    }`}
+          <RevealGroup key={project.title}>
+            <div className="group relative overflow-hidden rounded-xl border border-border-subtle bg-bg-elevated p-6 transition-all duration-300 hover:border-border-active hover:shadow-lg hover:shadow-accent-glow">
+              <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-accent origin-top transition-transform duration-300 scale-y-0 group-hover:scale-y-100" />
+              <div className="absolute inset-0 bg-gradient-to-r from-accent-glow to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="relative">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <h2 className="font-display text-lg font-semibold text-text-primary transition-colors duration-200 group-hover:text-accent">{project.title}</h2>
+                    <StatusBadge status={project.status} />
+                  </div>
+                  <Link
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${project.title} on GitHub`}
+                    className="flex shrink-0 items-center gap-1 text-sm text-text-tertiary transition-all duration-200 hover:text-accent"
                   >
-                    {project.status}
-                  </span>
+                    <FiGithub className="text-base" />
+                    <FiArrowUpRight className="text-xs transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
                 </div>
-                <Link
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${project.title} on GitHub`}
-                  className="flex shrink-0 items-center gap-1 text-sm text-zinc-400 transition-colors duration-150 hover:text-emerald-500 dark:hover:text-emerald-400"
-                >
-                  <FiGithub className="text-base" />
-                  <FiArrowUpRight className="text-xs" />
-                </Link>
-              </div>
 
-              <p className="mt-3 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
-                {project.description}
-              </p>
+                <p className="mt-3 font-body text-sm leading-relaxed text-text-secondary">
+                  {project.description}
+                </p>
 
-              <div className="mt-4 flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full bg-zinc-100 dark:bg-zinc-800 px-3 py-1 text-xs font-medium text-zinc-600 dark:text-zinc-400"
-                  >
-                    {tag}
-                  </span>
-                ))}
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full bg-bg-surface px-3 py-1 font-mono text-[11px] font-medium text-text-tertiary transition-colors duration-200 group-hover:bg-bg-surface/80"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-          </FadeIn>
+          </RevealGroup>
         ))}
       </div>
     </main>

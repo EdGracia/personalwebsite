@@ -1,31 +1,39 @@
 import Link from "next/link";
+import { FiArrowUpRight } from "react-icons/fi";
 import { getAllPosts, formatDate } from "@/lib/posts";
 
 export default function Blog() {
   const posts = getAllPosts();
 
   return (
-    <main className="mx-auto w-full max-w-3xl px-6 py-16">
-      <p className="text-sm text-emerald-500 dark:text-emerald-400">/* blog */</p>
-      <h1 className="mt-2 text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Blog</h1>
-      <p className="mt-3 text-zinc-500 dark:text-zinc-400">
+    <main className="mx-auto w-full max-w-5xl px-6 py-24">
+      <h1 className="font-display text-4xl font-bold tracking-tight text-text-primary">Writing</h1>
+      <p className="mt-3 font-body text-text-secondary">
         Thoughts on systems, graphics, and building things.
       </p>
 
-      <div className="mt-12 flex flex-col gap-4">
+      <div className="mt-12 flex flex-col">
         {posts.map((post) => (
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="group flex flex-col gap-1 py-6 px-4 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 transition-all hover:-translate-y-1 hover:shadow-md hover:border-emerald-500 dark:hover:border-emerald-400"
+            className="group flex items-baseline justify-between gap-4 border-b border-border-subtle py-5 transition-all duration-200 first:border-t hover:pl-2"
           >
-            <div className="flex items-baseline justify-between gap-4">
-              <span className="font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                {post.title}
+            <div className="flex items-baseline gap-4">
+              <span className="hidden sm:inline shrink-0 font-mono text-[11px] tracking-wide text-text-tertiary">
+                {formatDate(post.date)}
               </span>
-              <span className="shrink-0 text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">{formatDate(post.date)}</span>
+              <div>
+                <span className="font-display text-base font-medium text-text-primary transition-colors duration-200 group-hover:text-accent">
+                  {post.title}
+                </span>
+                <p className="mt-0.5 font-body text-sm text-text-secondary sm:hidden">
+                  {formatDate(post.date)}
+                </p>
+                <p className="mt-0.5 font-body text-sm text-text-tertiary">{post.summary}</p>
+              </div>
             </div>
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">{post.summary}</p>
+            <FiArrowUpRight className="shrink-0 text-text-tertiary opacity-0 transition-opacity group-hover:opacity-100" />
           </Link>
         ))}
       </div>

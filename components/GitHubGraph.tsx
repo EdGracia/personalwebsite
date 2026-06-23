@@ -1,7 +1,5 @@
 import { FiGithub } from "react-icons/fi";
 
-type Week = { contributionDays: { contributionCount: number; date: string }[] };
-
 async function getContributions() {
   try {
     const res = await fetch(
@@ -23,18 +21,20 @@ export default async function GitHubGraph() {
   }
 
   const levelColors: Record<number, string> = {
-    0: "bg-zinc-100 dark:bg-zinc-800",
-    1: "bg-emerald-200 dark:bg-emerald-900",
-    2: "bg-emerald-300 dark:bg-emerald-700",
-    3: "bg-emerald-400 dark:bg-emerald-500",
-    4: "bg-emerald-500 dark:bg-emerald-400",
+    0: "bg-bg-surface",
+    1: "bg-accent-muted/40",
+    2: "bg-accent-muted/70",
+    3: "bg-accent/60",
+    4: "bg-accent",
   };
 
   return (
     <div className="mt-8">
       <div className="flex items-center gap-2 mb-4">
-        <FiGithub className="text-zinc-400 dark:text-zinc-500 text-sm" />
-        <p className="text-sm text-zinc-400 dark:text-zinc-500">// github activity</p>
+        <FiGithub className="text-text-tertiary text-sm" />
+        <p className="font-mono text-[11px] uppercase tracking-[0.05em] text-text-tertiary">
+          GitHub Activity
+        </p>
       </div>
       <div className="overflow-x-auto">
         <div className="flex gap-0.5" style={{ minWidth: "max-content" }}>
