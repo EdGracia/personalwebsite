@@ -175,15 +175,11 @@ export default function Home() {
             <SectionHeader glyph="projects" title="Projects" />
           </RevealGroup>
         </div>
-        <div className="mx-auto max-w-6xl px-6 flex flex-col gap-8">
-          {projects.map((project, i) => (
+        <div className="mx-auto max-w-5xl px-6 flex flex-col gap-8">
+          {projects.map((project) => (
             <RevealGroup key={project.title}>
               <div
-                className={`group relative overflow-hidden rounded-xl border border-border-subtle bg-bg-elevated p-8 transition-all duration-300 hover:border-border-active hover:shadow-lg hover:shadow-accent-glow ${
-                  i % 2 === 0
-                    ? "sm:ml-12 sm:mr-0"
-                    : "sm:mr-12 sm:ml-0"
-                }`}
+                className="group relative overflow-hidden rounded-xl border border-border-subtle bg-bg-elevated p-8 transition-all duration-300 hover:border-border-active hover:shadow-lg hover:shadow-accent-glow"
               >
                 <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-accent origin-top transition-transform duration-300 scale-y-0 group-hover:scale-y-100" />
                 <div className="absolute inset-0 bg-gradient-to-r from-accent-glow to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />

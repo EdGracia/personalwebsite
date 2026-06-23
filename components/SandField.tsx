@@ -7,7 +7,6 @@ const MOBILE_COUNT = 200;
 const SPICE_RATIO = 0.15;
 const BASE_WIND_X = 0.3;
 const BASE_WIND_Y = 0.08;
-const MOUSE_RADIUS = 200;
 const FRICTION = 0.97;
 
 interface Grain {
@@ -35,8 +34,8 @@ function createGrains(w: number, h: number): Grain[] {
       y: Math.random() * h,
       vx: 0,
       vy: 0,
-      size: isSpice ? 1.5 : layer < 0.33 ? 1 : layer < 0.66 ? 1.5 : 2.5,
-      opacity: isSpice ? 0.6 : layer < 0.33 ? 0.2 : layer < 0.66 ? 0.35 : 0.55,
+      size: isSpice ? 1 : layer < 0.33 ? 0.6 : layer < 0.66 ? 1 : 1.5,
+      opacity: isSpice ? 0.4 : layer < 0.33 ? 0.12 : layer < 0.66 ? 0.2 : 0.35,
       layer,
       isSpice,
     };
@@ -46,7 +45,6 @@ function createGrains(w: number, h: number): Grain[] {
 export default function SandField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const grains = useRef<Grain[]>([]);
-  const mouse = useRef({ x: -9999, y: -9999, prevX: -9999, prevY: -9999 });
   const raf = useRef(0);
   const dims = useRef({ w: 0, h: 0 });
 
@@ -67,30 +65,6 @@ export default function SandField() {
     resize();
     window.addEventListener("resize", resize);
 
-    const onMouse = (e: MouseEvent) => {
-      const m = mouse.current;
-      m.prevX = m.x;
-      m.prevY = m.y;
-      m.x = e.clientX;
-      m.y = e.clientY;
-    };
-    const onTouch = (e: TouchEvent) => {
-      const t = e.touches[0];
-      const m = mouse.current;
-      m.prevX = m.x;
-      m.prevY = m.y;
-      m.x = t.clientX;
-      m.y = t.clientY;
-    };
-    const onLeave = () => {
-      mouse.current.x = -9999;
-      mouse.current.y = -9999;
-    };
-
-    window.addEventListener("mousemove", onMouse);
-    window.addEventListener("touchmove", onTouch, { passive: true });
-    document.addEventListener("mouseleave", onLeave);
-
     const draw = () => {
       const { w, h } = dims.current;
       ctx.clearRect(0, 0, w, h);
@@ -100,15 +74,7 @@ export default function SandField() {
         document.documentElement.style.getPropertyValue("--scroll-progress") || "0"
       );
 
-      const mx = mouse.current.x;
-      const my = mouse.current.y;
-      const mSpeed = Math.sqrt(
-        (mx - mouse.current.prevX) ** 2 + (my - mouse.current.prevY) ** 2
-      );
-      const pushStrength = Math.min(mSpeed * 0.15, 8);
-
-      const densityMultiplier =
-        progress < 0.33 ? 1.0 : progress < 0.66 ? 0.7 : 0.4;
+      const densityMultiplier = 1.0 - progress * 0.6;
 
       const spiceIntensity =
         progress < 0.2 ? 0.2 :
@@ -118,24 +84,11 @@ export default function SandField() {
         0.2;
 
       for (const g of grains.current) {
-        if (!g.isSpice && Math.random() > densityMultiplier) {
-          continue;
-        }
-
         const layerMult = 0.3 + g.layer * 0.7;
         const windMult = g.isSpice ? 0.6 : 1;
 
         g.vx += BASE_WIND_X * layerMult * 0.1 * windMult;
         g.vy += BASE_WIND_Y * layerMult * 0.1 * windMult;
-
-        const dx = g.x - mx;
-        const dy = g.y - my;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < MOUSE_RADIUS && dist > 0) {
-          const force = (1 - dist / MOUSE_RADIUS) * pushStrength * layerMult;
-          g.vx += (dx / dist) * force;
-          g.vy += (dy / dist) * force;
-        }
 
         g.vx *= FRICTION;
         g.vy *= FRICTION;
@@ -149,15 +102,14 @@ export default function SandField() {
       }
 
       const sandColor = isDark ? "210, 190, 160" : "160, 140, 110";
+      const sandAlpha = (isDark ? 0.25 : 0.3) * densityMultiplier;
       const sandGrains = grains.current.filter((g) => !g.isSpice);
       ctx.beginPath();
       for (const g of sandGrains) {
         ctx.moveTo(g.x + g.size, g.y);
         ctx.arc(g.x, g.y, g.size, 0, Math.PI * 2);
       }
-      ctx.fillStyle = isDark
-        ? `rgba(${sandColor}, 0.35)`
-        : `rgba(${sandColor}, 0.4)`;
+      ctx.fillStyle = `rgba(${sandColor}, ${sandAlpha})`;
       ctx.fill();
 
       const spiceGrains = grains.current.filter((g) => g.isSpice);
@@ -168,13 +120,11 @@ export default function SandField() {
           ctx.arc(g.x, g.y, g.size, 0, Math.PI * 2);
         }
         ctx.fillStyle = isDark
-          ? `rgba(212, 162, 76, ${0.3 * spiceIntensity})`
-          : `rgba(180, 120, 40, ${0.25 * spiceIntensity})`;
+          ? `rgba(212, 162, 76, ${0.2 * spiceIntensity})`
+          : `rgba(180, 120, 40, ${0.15 * spiceIntensity})`;
         ctx.fill();
       }
 
-      mouse.current.prevX = mx;
-      mouse.current.prevY = my;
       raf.current = requestAnimationFrame(draw);
     };
 
@@ -182,9 +132,6 @@ export default function SandField() {
 
     return () => {
       window.removeEventListener("resize", resize);
-      window.removeEventListener("mousemove", onMouse);
-      window.removeEventListener("touchmove", onTouch);
-      document.removeEventListener("mouseleave", onLeave);
       cancelAnimationFrame(raf.current);
     };
   }, []);

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FiGithub } from "react-icons/fi";
 
 async function getContributions() {
@@ -30,26 +31,32 @@ export default async function GitHubGraph() {
 
   return (
     <div className="mt-8">
-      <div className="flex items-center gap-2 mb-4">
-        <FiGithub className="text-text-tertiary text-sm" />
+      <div className="flex items-center gap-2 mb-3">
+        <Link
+          href="https://github.com/EdGracia"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+          className="text-text-tertiary transition-colors duration-200 hover:text-accent"
+        >
+          <FiGithub className="text-sm" />
+        </Link>
         <p className="font-mono text-[11px] uppercase tracking-[0.05em] text-text-tertiary">
           GitHub Activity
         </p>
       </div>
-      <div className="overflow-x-auto">
-        <div className="flex gap-0.5" style={{ minWidth: "max-content" }}>
-          {weeks.map((week, wi) => (
-            <div key={wi} className="flex flex-col gap-0.5">
-              {week.map((day) => (
-                <div
-                  key={day.date}
-                  title={`${day.date}: ${day.count} contributions`}
-                  className={`w-2.5 h-2.5 rounded-sm ${levelColors[day.level] ?? levelColors[0]}`}
-                />
-              ))}
-            </div>
-          ))}
-        </div>
+      <div className="flex gap-px">
+        {weeks.map((week, wi) => (
+          <div key={wi} className="flex flex-col gap-px">
+            {week.map((day) => (
+              <div
+                key={day.date}
+                title={`${day.date}: ${day.count} contributions`}
+                className={`w-[9px] h-[9px] rounded-[1px] ${levelColors[day.level] ?? levelColors[0]}`}
+              />
+            ))}
+          </div>
+        ))}
       </div>
     </div>
   );
