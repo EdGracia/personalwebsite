@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import ParallaxLayer from "@/components/ParallaxLayer";
 import AmbientField from "@/components/AmbientField";
 import SandField from "@/components/SandField";
+import SpiceCursor from "@/components/SpiceCursor";
 import { SandInteractionProvider } from "@/components/SandInteractionContext";
 import ScrollEngine from "@/components/ScrollEngine";
 import PageTransition from "@/components/PageTransition";
@@ -37,6 +38,7 @@ export default function RootLayout({
             <ParallaxLayer />
             <AmbientField />
             <SandField />
+            <SpiceCursor />
             <ScrollEngine />
             <div className="relative z-10 flex flex-1 flex-col">
               <Navbar />
