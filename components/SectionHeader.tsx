@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Glyph from "./Glyph";
 import type { GlyphName } from "./glyphs";
 
@@ -10,15 +10,20 @@ interface SectionHeaderProps {
   number?: string;
 }
 
-export default function SectionHeader({ glyph, title, number }: SectionHeaderProps) {
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+export default function SectionHeader({ glyph, title }: SectionHeaderProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const reducedMotion = useSyncExternalStore(
+    () => () => {},
+    prefersReducedMotion,
+    () => false
+  );
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(true);
-      return;
-    }
+    if (reducedMotion) return;
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(
@@ -32,15 +37,17 @@ export default function SectionHeader({ glyph, title, number }: SectionHeaderPro
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [reducedMotion]);
+
+  const show = reducedMotion || visible;
 
   return (
     <div ref={ref} className="group mb-10 flex items-center gap-4">
       <span
         className="text-text-tertiary transition-all duration-200 group-hover:text-accent group-hover:rotate-[15deg]"
         style={{
-          opacity: visible ? 1 : 0,
-          transform: visible ? undefined : "translateX(-8px)",
+          opacity: show ? 1 : 0,
+          transform: show ? undefined : "translateX(-8px)",
           transition: "opacity 0.5s, transform 0.5s, color 0.2s",
         }}
       >
@@ -49,8 +56,8 @@ export default function SectionHeader({ glyph, title, number }: SectionHeaderPro
       <h2
         className="relative font-display text-2xl font-bold tracking-tight text-text-primary transition-all duration-500 delay-100"
         style={{
-          opacity: visible ? 1 : 0,
-          transform: visible ? "translateX(0)" : "translateX(-8px)",
+          opacity: show ? 1 : 0,
+          transform: show ? "translateX(0)" : "translateX(-8px)",
         }}
       >
         {title}
@@ -59,7 +66,7 @@ export default function SectionHeader({ glyph, title, number }: SectionHeaderPro
       <div
         className="h-px flex-1 bg-border-subtle origin-left transition-transform duration-700 delay-200"
         style={{
-          transform: visible ? "scaleX(1)" : "scaleX(0)",
+          transform: show ? "scaleX(1)" : "scaleX(0)",
         }}
       />
     </div>

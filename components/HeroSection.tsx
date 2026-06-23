@@ -3,15 +3,15 @@
 import Link from "next/link";
 import { FiGithub, FiMail } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import Glyph from "./Glyph";
 
-export default function HeroSection() {
-  const [mounted, setMounted] = useState(false);
+const subscribe = () => () => {};
+const getSnapshot = () => true;
+const getServerSnapshot = () => false;
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+export default function HeroSection() {
+  const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const clipStyle = (delay: number): React.CSSProperties =>
     mounted

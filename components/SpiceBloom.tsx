@@ -14,51 +14,66 @@ interface BloomParticle {
   size: number;
 }
 
+function drawParticles(
+  canvas: HTMLCanvasElement,
+  particles: BloomParticle[],
+  raf: { current: number }
+) {
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const dpr = window.devicePixelRatio || 1;
+  const w = canvas.offsetWidth;
+  const h = canvas.offsetHeight;
+
+  if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  ctx.clearRect(0, 0, w, h);
+  const now = performance.now();
+  const isDark = document.documentElement.classList.contains("dark");
+
+  const alive = particles.filter((p) => now - p.born < PARTICLE_LIFE);
+  particles.length = 0;
+  particles.push(...alive);
+
+  for (const p of particles) {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vx *= 0.96;
+    p.vy *= 0.96;
+    const age = (now - p.born) / PARTICLE_LIFE;
+    const alpha = (1 - age) * 0.7;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size * (1 - age * 0.3), 0, Math.PI * 2);
+    ctx.fillStyle = isDark
+      ? `rgba(212, 162, 76, ${alpha})`
+      : `rgba(180, 120, 40, ${alpha})`;
+    ctx.fill();
+  }
+
+  if (particles.length > 0) {
+    raf.current = requestAnimationFrame(() =>
+      drawParticles(canvas, particles, raf)
+    );
+  }
+}
+
 export default function SpiceBloom({ children, className = "" }: { children: ReactNode; className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particles = useRef<BloomParticle[]>([]);
   const raf = useRef(0);
 
-  const draw = useCallback(() => {
+  const startDraw = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const dpr = window.devicePixelRatio || 1;
-    const w = canvas.offsetWidth;
-    const h = canvas.offsetHeight;
-
-    if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-
-    ctx.clearRect(0, 0, w, h);
-    const now = performance.now();
-    const isDark = document.documentElement.classList.contains("dark");
-
-    particles.current = particles.current.filter((p) => now - p.born < PARTICLE_LIFE);
-
-    for (const p of particles.current) {
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vx *= 0.96;
-      p.vy *= 0.96;
-      const age = (now - p.born) / PARTICLE_LIFE;
-      const alpha = (1 - age) * 0.7;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size * (1 - age * 0.3), 0, Math.PI * 2);
-      ctx.fillStyle = isDark
-        ? `rgba(212, 162, 76, ${alpha})`
-        : `rgba(180, 120, 40, ${alpha})`;
-      ctx.fill();
-    }
-
-    if (particles.current.length > 0) {
-      raf.current = requestAnimationFrame(draw);
-    }
+    cancelAnimationFrame(raf.current);
+    raf.current = requestAnimationFrame(() =>
+      drawParticles(canvas, particles.current, raf)
+    );
   }, []);
 
   const handleMouseEnter = useCallback(
@@ -82,10 +97,9 @@ export default function SpiceBloom({ children, className = "" }: { children: Rea
         });
       }
 
-      cancelAnimationFrame(raf.current);
-      raf.current = requestAnimationFrame(draw);
+      startDraw();
     },
-    [draw]
+    [startDraw]
   );
 
   return (
