@@ -1,3 +1,5 @@
+import Glyph from "./Glyph";
+
 export default function StatusBadge({ status }: { status: string }) {
   const isActive = status === "In Progress";
   return (
@@ -8,8 +10,10 @@ export default function StatusBadge({ status }: { status: string }) {
           : "bg-bg-surface text-text-tertiary"
       }`}
     >
-      {isActive && (
+      {isActive ? (
         <span className="h-1.5 w-1.5 rounded-full bg-signal" style={{ animation: "subtlePulse 2s ease-in-out infinite" }} />
+      ) : (
+        <Glyph name="tools" size={10} />
       )}
       {status}
     </span>

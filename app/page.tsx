@@ -5,16 +5,26 @@ import RevealGroup from "@/components/RevealGroup";
 import SectionHeader from "@/components/SectionHeader";
 import StatusBadge from "@/components/StatusBadge";
 import GitHubGraph from "@/components/GitHubGraph";
+import TerrainDivider from "@/components/TerrainDivider";
+import Glyph from "@/components/Glyph";
 import { FiGithub, FiArrowUpRight } from "react-icons/fi";
 import { getAllPosts, formatDate } from "@/lib/posts";
 import {
   SiCplusplus, SiC, SiPython, SiJavascript,
   SiTypescript, SiReact, SiNextdotjs, SiGit, SiLinux,
 } from "react-icons/si";
+import type { GlyphName } from "@/components/glyphs";
 
-const skillGroups = [
+const skillGroups: {
+  category: string;
+  glyph: GlyphName;
+  items: { icon: typeof SiCplusplus; label: string }[];
+  span?: string;
+}[] = [
   {
     category: "Languages",
+    glyph: "languages",
+    span: "col-span-2 row-span-2",
     items: [
       { icon: SiCplusplus, label: "C++" },
       { icon: SiC, label: "C" },
@@ -25,6 +35,7 @@ const skillGroups = [
   },
   {
     category: "Frameworks",
+    glyph: "frameworks",
     items: [
       { icon: SiReact, label: "React" },
       { icon: SiNextdotjs, label: "Next.js" },
@@ -32,6 +43,7 @@ const skillGroups = [
   },
   {
     category: "Tools",
+    glyph: "tools",
     items: [
       { icon: SiGit, label: "Git" },
       { icon: SiLinux, label: "Linux" },
@@ -60,24 +72,33 @@ export default function Home() {
   const recentPosts = getAllPosts().slice(0, 3);
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-6">
+    <main className="w-full">
 
       <HeroSection />
 
-      {/* ── 01 Capabilities ── */}
-      <section id="capabilities" className="py-24 border-t border-border-subtle">
+      {/* ── Capabilities — Bento Grid ── */}
+      <div className="mx-auto max-w-5xl px-6">
+        <TerrainDivider seed={1} />
+      </div>
+      <section id="capabilities" className="mx-auto max-w-5xl px-6 py-24">
         <RevealGroup>
           <SectionHeader glyph="capabilities" title="Capabilities" />
-          <div className="grid grid-cols-1 gap-12 sm:grid-cols-3">
-            {skillGroups.map(({ category, items }) => (
-              <div key={category}>
-                <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.05em] text-text-tertiary mb-4">
-                  {category}
-                </h3>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {skillGroups.map(({ category, glyph, items, span }) => (
+              <div
+                key={category}
+                className={`group rounded-xl border border-border-subtle bg-bg-surface/50 p-6 transition-all duration-300 hover:border-border-active hover:bg-bg-surface ${span ?? ""}`}
+              >
+                <div className="flex items-center gap-2 mb-4">
+                  <Glyph name={glyph} size={14} className="text-text-tertiary transition-colors duration-200 group-hover:text-accent" />
+                  <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.05em] text-text-tertiary">
+                    {category}
+                  </h3>
+                </div>
                 <div className="flex flex-col gap-2.5">
                   {items.map(({ icon: Icon, label }) => (
                     <span key={label} className="flex items-center gap-2.5 font-mono text-sm text-text-secondary transition-all duration-200 hover:text-text-primary hover:translate-x-1 cursor-default">
-                      <Icon className="text-sm shrink-0 text-text-tertiary transition-colors duration-200 group-hover:text-accent" />
+                      <Icon className="text-sm shrink-0 text-text-tertiary" />
                       {label}
                     </span>
                   ))}
@@ -88,18 +109,25 @@ export default function Home() {
         </RevealGroup>
       </section>
 
-      {/* ── 02 About ── */}
-      <section id="about" className="py-24 border-t border-border-subtle">
+      {/* ── About — Asymmetric Editorial ── */}
+      <div className="mx-auto max-w-5xl px-6">
+        <TerrainDivider seed={3} />
+      </div>
+      <section id="about" className="py-24">
+        <div className="mx-auto max-w-5xl px-6">
+          <RevealGroup>
+            <SectionHeader glyph="about" title="About" />
+          </RevealGroup>
+        </div>
         <RevealGroup>
-          <SectionHeader glyph="about" title="About" />
-          <div className="grid grid-cols-1 gap-12 sm:grid-cols-[auto_1fr]">
-            <div className="flex flex-col items-start gap-6">
+          <div className="mx-auto max-w-5xl px-6 grid grid-cols-1 gap-12 sm:grid-cols-[auto_1fr]">
+            <div className="flex flex-col items-start gap-6 sm:-ml-10">
               <Image
                 src="/headshot.png"
                 alt="Ed Gracia"
-                width={120}
-                height={120}
-                className="h-28 w-28 rounded-2xl object-cover ring-1 ring-border-subtle"
+                width={140}
+                height={140}
+                className="h-32 w-32 rounded-2xl object-cover ring-1 ring-border-subtle"
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
               />
@@ -118,13 +146,13 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div>
-              <p className="max-w-lg font-body leading-relaxed text-text-secondary">
+            <div className="max-w-lg">
+              <p className="font-body leading-relaxed text-text-secondary">
                 I&apos;m a Software Engineering student at the University of Miami,
                 originally from Houston, Texas. I care about building things at the
                 lowest level possible — where performance is a craft, not an afterthought.
               </p>
-              <p className="mt-4 max-w-lg font-body leading-relaxed text-text-secondary">
+              <p className="mt-4 font-body leading-relaxed text-text-secondary">
                 I speak English and Spanish natively, which has shaped how I think
                 about communication in code as much as in conversation.
               </p>
@@ -134,15 +162,26 @@ export default function Home() {
         </RevealGroup>
       </section>
 
-      {/* ── 03 Projects ── */}
-      <section id="projects" className="py-24 border-t border-border-subtle">
-        <RevealGroup>
-          <SectionHeader glyph="projects" title="Projects" />
-        </RevealGroup>
-        <div className="flex flex-col gap-6">
-          {projects.map((project) => (
+      {/* ── Projects — Staggered Cards ── */}
+      <div className="mx-auto max-w-5xl px-6">
+        <TerrainDivider seed={7} />
+      </div>
+      <section id="projects" className="py-24">
+        <div className="mx-auto max-w-5xl px-6">
+          <RevealGroup>
+            <SectionHeader glyph="projects" title="Projects" />
+          </RevealGroup>
+        </div>
+        <div className="mx-auto max-w-6xl px-6 flex flex-col gap-8">
+          {projects.map((project, i) => (
             <RevealGroup key={project.title}>
-              <div className="group relative overflow-hidden rounded-xl border border-border-subtle bg-bg-elevated p-6 transition-all duration-300 hover:border-border-active hover:shadow-lg hover:shadow-accent-glow">
+              <div
+                className={`group relative overflow-hidden rounded-xl border border-border-subtle bg-bg-elevated p-8 transition-all duration-300 hover:border-border-active hover:shadow-lg hover:shadow-accent-glow ${
+                  i % 2 === 0
+                    ? "sm:ml-12 sm:mr-0"
+                    : "sm:mr-12 sm:ml-0"
+                }`}
+              >
                 <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-accent origin-top transition-transform duration-300 scale-y-0 group-hover:scale-y-100" />
                 <div className="absolute inset-0 bg-gradient-to-r from-accent-glow to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="relative">
@@ -177,18 +216,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 04 Blog ── */}
-      <section id="blog" className="py-24 border-t border-border-subtle">
+      {/* ── Blog — Full-Width Strips ── */}
+      <div className="mx-auto max-w-5xl px-6">
+        <TerrainDivider seed={11} />
+      </div>
+      <section id="blog" className="py-24">
+        <div className="mx-auto max-w-5xl px-6">
+          <RevealGroup>
+            <SectionHeader glyph="blog" title="Blog" />
+          </RevealGroup>
+        </div>
         <RevealGroup>
-          <SectionHeader glyph="blog" title="Blog" />
           <div className="flex flex-col">
             {recentPosts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group flex items-baseline justify-between gap-4 border-b border-border-subtle py-5 transition-all duration-200 first:border-t hover:pl-2"
+                className="group relative flex items-center justify-between gap-4 border-b border-border-subtle px-6 py-6 transition-all duration-200 hover:bg-bg-surface/30 sm:px-[calc(50vw-32rem)]"
               >
-                <div className="flex items-baseline gap-4">
+                <div className="flex items-center gap-4">
+                  <Glyph name="blog" size={12} className="shrink-0 text-text-tertiary opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
                   <span className="hidden sm:inline shrink-0 font-mono text-[11px] tracking-wide text-text-tertiary">
                     {formatDate(post.date)}
                   </span>
@@ -199,35 +246,46 @@ export default function Home() {
                 <FiArrowUpRight className="shrink-0 text-text-tertiary transition-all duration-200 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0" />
               </Link>
             ))}
-            <Link href="/blog" className="mt-4 inline-block font-display text-sm text-text-tertiary transition-colors hover:text-accent">
-              All posts →
-            </Link>
+            <div className="mx-auto max-w-5xl px-6 mt-4">
+              <Link href="/blog" className="inline-block font-display text-sm text-text-tertiary transition-colors hover:text-accent">
+                All posts →
+              </Link>
+            </div>
           </div>
         </RevealGroup>
       </section>
 
-      {/* ── 05 Resume ── */}
-      <section id="resume" className="py-24 border-t border-border-subtle">
+      {/* ── Resume — 2x2 Bento ── */}
+      <div className="mx-auto max-w-5xl px-6">
+        <TerrainDivider seed={17} />
+      </div>
+      <section id="resume" className="mx-auto max-w-5xl px-6 py-24">
         <RevealGroup>
-          <div className="flex items-center justify-between mb-10">
-            <SectionHeader glyph="resume" title="Resume" />
-            <Link href="/resume" className="font-display text-sm text-text-tertiary transition-colors hover:text-accent">
-              Full page →
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+          <SectionHeader glyph="resume" title="Resume" />
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {[
-              { label: "Education", value: "B.S. Software Engineering, University of Miami — Expected May 2028" },
-              { label: "Experience", value: "Engineering Intern at Ensel Technologies LLC (2024–2025)" },
-              { label: "Awards", value: "Canes Achievement Award · Barry M. Moran Mathematics Award" },
+              { glyph: "about" as GlyphName, label: "Education", value: "B.S. Software Engineering, University of Miami — Expected May 2028" },
+              { glyph: "projects" as GlyphName, label: "Experience", value: "Engineering Intern at Ensel Technologies LLC (2024–2025)" },
+              { glyph: "capabilities" as GlyphName, label: "Awards", value: "Canes Achievement Award · Barry M. Moran Mathematics Award" },
             ].map((item) => (
               <div key={item.label} className="rounded-xl border border-border-subtle bg-bg-elevated p-5">
-                <h3 className="font-mono text-[11px] uppercase tracking-[0.05em] text-text-tertiary mb-2">
-                  {item.label}
-                </h3>
+                <div className="flex items-center gap-2 mb-2">
+                  <Glyph name={item.glyph} size={12} className="text-text-tertiary" />
+                  <h3 className="font-mono text-[11px] uppercase tracking-[0.05em] text-text-tertiary">
+                    {item.label}
+                  </h3>
+                </div>
                 <p className="font-body text-sm leading-relaxed text-text-secondary">{item.value}</p>
               </div>
             ))}
+            <Link
+              href="/resume"
+              className="group flex items-center justify-center rounded-xl border border-border-subtle bg-bg-surface/30 p-5 transition-all duration-300 hover:border-accent hover:bg-accent-glow"
+            >
+              <span className="font-display text-sm font-medium text-text-secondary transition-colors duration-200 group-hover:text-accent">
+                Full Resume →
+              </span>
+            </Link>
           </div>
         </RevealGroup>
       </section>
