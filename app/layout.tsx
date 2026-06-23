@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AmbientField from "@/components/AmbientField";
+import SandField from "@/components/SandField";
+import { SandInteractionProvider } from "@/components/SandInteractionContext";
 import ScrollEngine from "@/components/ScrollEngine";
 import PageTransition from "@/components/PageTransition";
 import ThemeProvider from "@/components/ThemeProvider";
@@ -30,15 +32,18 @@ export default function RootLayout({
     <html lang="en" className={`${instrumentSans.variable} ${geist.variable} ${jetbrainsMono.variable} h-full antialiased scroll-smooth`} suppressHydrationWarning>
       <body className="min-h-full flex flex-col bg-bg-deep text-text-primary" suppressHydrationWarning>
         <ThemeProvider>
-          <AmbientField />
-          <ScrollEngine />
-          <div className="relative z-10 flex flex-1 flex-col">
-            <Navbar />
-            <PageTransition>
-              {children}
-            </PageTransition>
-            <Footer />
-          </div>
+          <SandInteractionProvider>
+            <AmbientField />
+            <SandField />
+            <ScrollEngine />
+            <div className="relative z-10 flex flex-1 flex-col">
+              <Navbar />
+              <PageTransition>
+                {children}
+              </PageTransition>
+              <Footer />
+            </div>
+          </SandInteractionProvider>
           <Analytics />
         </ThemeProvider>
       </body>

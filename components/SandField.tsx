@@ -2,7 +2,9 @@
 
 import { useEffect, useRef } from "react";
 
-const PARTICLE_COUNT = 300;
+const DESKTOP_COUNT = 400;
+const MOBILE_COUNT = 200;
+const SPICE_RATIO = 0.15;
 const BASE_WIND_X = 0.3;
 const BASE_WIND_Y = 0.08;
 const MOUSE_RADIUS = 200;
@@ -16,19 +18,27 @@ interface Grain {
   size: number;
   opacity: number;
   layer: number;
+  isSpice: boolean;
+}
+
+function isMobile() {
+  return typeof window !== "undefined" && window.innerWidth < 768;
 }
 
 function createGrains(w: number, h: number): Grain[] {
-  return Array.from({ length: PARTICLE_COUNT }, () => {
+  const count = isMobile() ? MOBILE_COUNT : DESKTOP_COUNT;
+  return Array.from({ length: count }, () => {
     const layer = Math.random();
+    const isSpice = Math.random() < SPICE_RATIO;
     return {
       x: Math.random() * w,
       y: Math.random() * h,
       vx: 0,
       vy: 0,
-      size: layer < 0.33 ? 1 : layer < 0.66 ? 1.5 : 2.5,
-      opacity: layer < 0.33 ? 0.2 : layer < 0.66 ? 0.35 : 0.55,
+      size: isSpice ? 1.5 : layer < 0.33 ? 1 : layer < 0.66 ? 1.5 : 2.5,
+      opacity: isSpice ? 0.6 : layer < 0.33 ? 0.2 : layer < 0.66 ? 0.35 : 0.55,
       layer,
+      isSpice,
     };
   });
 }
@@ -45,35 +55,32 @@ export default function SandField() {
     const ctx = canvas.getContext("2d")!;
 
     const resize = () => {
-      const rect = canvas.getBoundingClientRect();
       const dpr = window.devicePixelRatio || 1;
-      dims.current = { w: rect.width, h: rect.height };
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
+      dims.current = { w: window.innerWidth, h: window.innerHeight };
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       if (grains.current.length === 0) {
-        grains.current = createGrains(rect.width, rect.height);
+        grains.current = createGrains(window.innerWidth, window.innerHeight);
       }
     };
     resize();
     window.addEventListener("resize", resize);
 
     const onMouse = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
       const m = mouse.current;
       m.prevX = m.x;
       m.prevY = m.y;
-      m.x = e.clientX - rect.left;
-      m.y = e.clientY - rect.top;
+      m.x = e.clientX;
+      m.y = e.clientY;
     };
     const onTouch = (e: TouchEvent) => {
-      const rect = canvas.getBoundingClientRect();
       const t = e.touches[0];
       const m = mouse.current;
       m.prevX = m.x;
       m.prevY = m.y;
-      m.x = t.clientX - rect.left;
-      m.y = t.clientY - rect.top;
+      m.x = t.clientX;
+      m.y = t.clientY;
     };
     const onLeave = () => {
       mouse.current.x = -9999;
@@ -82,13 +89,17 @@ export default function SandField() {
 
     window.addEventListener("mousemove", onMouse);
     window.addEventListener("touchmove", onTouch, { passive: true });
-    canvas.addEventListener("mouseleave", onLeave);
+    document.addEventListener("mouseleave", onLeave);
 
     const draw = () => {
       const { w, h } = dims.current;
       ctx.clearRect(0, 0, w, h);
 
       const isDark = document.documentElement.classList.contains("dark");
+      const progress = parseFloat(
+        document.documentElement.style.getPropertyValue("--scroll-progress") || "0"
+      );
+
       const mx = mouse.current.x;
       const my = mouse.current.y;
       const mSpeed = Math.sqrt(
@@ -96,11 +107,26 @@ export default function SandField() {
       );
       const pushStrength = Math.min(mSpeed * 0.15, 8);
 
-      for (const g of grains.current) {
-        const layerMult = 0.3 + g.layer * 0.7;
+      const densityMultiplier =
+        progress < 0.33 ? 1.0 : progress < 0.66 ? 0.7 : 0.4;
 
-        g.vx += BASE_WIND_X * layerMult * 0.1;
-        g.vy += BASE_WIND_Y * layerMult * 0.1;
+      const spiceIntensity =
+        progress < 0.2 ? 0.2 :
+        progress < 0.4 ? 0.5 + (progress - 0.2) * 2.5 :
+        progress < 0.6 ? 1.0 :
+        progress < 0.8 ? 1.0 - (progress - 0.6) * 2.5 :
+        0.2;
+
+      for (const g of grains.current) {
+        if (!g.isSpice && Math.random() > densityMultiplier) {
+          continue;
+        }
+
+        const layerMult = 0.3 + g.layer * 0.7;
+        const windMult = g.isSpice ? 0.6 : 1;
+
+        g.vx += BASE_WIND_X * layerMult * 0.1 * windMult;
+        g.vy += BASE_WIND_Y * layerMult * 0.1 * windMult;
 
         const dx = g.x - mx;
         const dy = g.y - my;
@@ -123,9 +149,9 @@ export default function SandField() {
       }
 
       const sandColor = isDark ? "210, 190, 160" : "160, 140, 110";
-
+      const sandGrains = grains.current.filter((g) => !g.isSpice);
       ctx.beginPath();
-      for (const g of grains.current) {
+      for (const g of sandGrains) {
         ctx.moveTo(g.x + g.size, g.y);
         ctx.arc(g.x, g.y, g.size, 0, Math.PI * 2);
       }
@@ -134,22 +160,21 @@ export default function SandField() {
         : `rgba(${sandColor}, 0.4)`;
       ctx.fill();
 
-      const brightGrains = grains.current.filter(g => g.layer > 0.66);
-      if (brightGrains.length > 0) {
+      const spiceGrains = grains.current.filter((g) => g.isSpice);
+      if (spiceGrains.length > 0) {
         ctx.beginPath();
-        for (const g of brightGrains) {
-          ctx.moveTo(g.x + g.size * 0.6, g.y);
-          ctx.arc(g.x, g.y, g.size * 0.6, 0, Math.PI * 2);
+        for (const g of spiceGrains) {
+          ctx.moveTo(g.x + g.size, g.y);
+          ctx.arc(g.x, g.y, g.size, 0, Math.PI * 2);
         }
         ctx.fillStyle = isDark
-          ? "rgba(212, 162, 76, 0.2)"
-          : "rgba(26, 111, 181, 0.15)";
+          ? `rgba(212, 162, 76, ${0.3 * spiceIntensity})`
+          : `rgba(180, 120, 40, ${0.25 * spiceIntensity})`;
         ctx.fill();
       }
 
       mouse.current.prevX = mx;
       mouse.current.prevY = my;
-
       raf.current = requestAnimationFrame(draw);
     };
 
@@ -159,7 +184,7 @@ export default function SandField() {
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMouse);
       window.removeEventListener("touchmove", onTouch);
-      canvas.removeEventListener("mouseleave", onLeave);
+      document.removeEventListener("mouseleave", onLeave);
       cancelAnimationFrame(raf.current);
     };
   }, []);
@@ -167,12 +192,8 @@ export default function SandField() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 w-full h-full"
-      style={{
-        touchAction: "none",
-        mask: "radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 100%)",
-        WebkitMask: "radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 100%)",
-      }}
+      className="pointer-events-none fixed inset-0 z-[1]"
+      style={{ touchAction: "none" }}
     />
   );
 }

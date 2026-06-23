@@ -4,7 +4,6 @@ import Link from "next/link";
 import { FiGithub, FiMail } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
 import { useEffect, useState } from "react";
-import SandField from "./SandField";
 
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
@@ -37,8 +36,6 @@ export default function HeroSection() {
 
   return (
     <section id="home" className="relative flex min-h-[85vh] flex-col justify-center py-24 overflow-hidden">
-      <SandField />
-
       <div className="absolute inset-0 pointer-events-none" style={{
         background: "radial-gradient(ellipse 80% 50% at 50% 80%, var(--accent-glow) 0%, transparent 70%)",
       }} />
