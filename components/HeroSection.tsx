@@ -40,7 +40,7 @@ export default function HeroSection() {
       <SandField />
 
       <div className="absolute inset-0 pointer-events-none" style={{
-        background: "linear-gradient(to bottom, transparent 30%, var(--signal-bg) 60%, var(--accent-glow) 85%, transparent 100%)",
+        background: "radial-gradient(ellipse 80% 50% at 50% 80%, var(--accent-glow) 0%, transparent 70%)",
       }} />
 
       <div className="relative z-10">
@@ -60,7 +60,7 @@ export default function HeroSection() {
         <div style={fadeStyle(600)}>
           <p className="mt-6 max-w-lg font-body text-lg leading-relaxed text-text-secondary">
             A student passionate about all things software who dives deep into
-            low-level systems, computer graphics, and game engine architecture.
+            low-level systems, computer graphics, and graphics engine architecture.
           </p>
         </div>
       </div>

@@ -9,7 +9,7 @@ import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
 const links = [
   { href: "/#about", label: "About", id: "about" },
   { href: "/#projects", label: "Projects", id: "projects" },
-  { href: "/#blog", label: "Writing", id: "blog" },
+  { href: "/blog", label: "Blog", id: "blog" },
   { href: "/#resume", label: "Resume", id: "resume" },
 ];
 

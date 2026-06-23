@@ -177,10 +177,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 04 Writing ── */}
+      {/* ── 04 Blog ── */}
       <section id="blog" className="py-24 border-t border-border-subtle">
         <RevealGroup>
-          <SectionHeader number="04" title="Writing" />
+          <SectionHeader number="04" title="Blog" />
           <div className="flex flex-col">
             {recentPosts.map((post) => (
               <Link

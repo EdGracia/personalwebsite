@@ -86,6 +86,10 @@ export default function AmbientField() {
     <canvas
       ref={canvasRef}
       className="pointer-events-none fixed inset-0 z-0"
+      style={{
+        mask: "linear-gradient(to bottom, transparent 0%, transparent 60%, black 85%)",
+        WebkitMask: "linear-gradient(to bottom, transparent 0%, transparent 60%, black 85%)",
+      }}
     />
   );
 }

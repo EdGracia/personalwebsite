@@ -7,7 +7,7 @@ export default function Blog() {
 
   return (
     <main className="mx-auto w-full max-w-5xl px-6 py-24">
-      <h1 className="font-display text-4xl font-bold tracking-tight text-text-primary">Writing</h1>
+      <h1 className="font-display text-4xl font-bold tracking-tight text-text-primary">Blog</h1>
       <p className="mt-3 font-body text-text-secondary">
         Thoughts on systems, graphics, and building things.
       </p>

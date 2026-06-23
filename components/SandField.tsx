@@ -168,7 +168,11 @@ export default function SandField() {
     <canvas
       ref={canvasRef}
       className="pointer-events-none absolute inset-0 w-full h-full"
-      style={{ touchAction: "none" }}
+      style={{
+        touchAction: "none",
+        mask: "radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 100%)",
+        WebkitMask: "radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 100%)",
+      }}
     />
   );
 }
