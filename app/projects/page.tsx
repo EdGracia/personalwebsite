@@ -1,34 +1,37 @@
+"use client";
+
 import Link from "next/link";
 import { FiGithub, FiArrowUpRight } from "react-icons/fi";
 import RevealGroup from "@/components/RevealGroup";
 import StatusBadge from "@/components/StatusBadge";
-
-const projects = [
-  {
-    title: "3D Game Engine",
-    description:
-      "A from-scratch 3D engine built in C++ using raylib. Handles rendering, scene management, and serves as the foundation for an original game. Actively in development.",
-    tags: ["C++", "raylib", "Graphics", "Systems"],
-    status: "In Progress",
-    github: "https://github.com/EdGracia/Sandbox",
-  },
-  {
-    title: "2D Platformer",
-    description:
-      "A 2D platformer built in C++ with raylib. Custom physics, collision detection, and sprite handling — written without a game framework to stay close to the metal.",
-    tags: ["C++", "raylib", "Game Dev"],
-    status: "Incomplete",
-    github: "https://github.com/EdGracia/Platformer",
-  },
-];
+import { useTranslation } from "@/lib/translations";
 
 export default function Projects() {
+  const { t } = useTranslation();
+
+  const projects = [
+    {
+      title: t("projectsPage.engine.title"),
+      description: t("projectsPage.engine.description"),
+      tags: ["C++", "raylib", "Graphics", "Systems"],
+      status: t("projects.status.inProgress"),
+      github: "https://github.com/EdGracia/Sandbox",
+    },
+    {
+      title: t("projectsPage.platformer.title"),
+      description: t("projectsPage.platformer.description"),
+      tags: ["C++", "raylib", "Game Dev"],
+      status: t("projects.status.incomplete"),
+      github: "https://github.com/EdGracia/Platformer",
+    },
+  ];
+
   return (
     <main className="mx-auto w-full max-w-5xl px-6 py-24">
       <RevealGroup>
-        <h1 className="font-display text-4xl font-bold tracking-tight text-text-primary">Projects</h1>
+        <h1 className="font-display text-4xl font-bold tracking-tight text-text-primary">{t("projectsPage.title")}</h1>
         <p className="mt-3 font-body text-text-secondary">
-          Things I&apos;ve built or am currently building.
+          {t("projectsPage.subtitle")}
         </p>
       </RevealGroup>
 

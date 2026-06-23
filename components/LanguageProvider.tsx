@@ -1,18 +1,21 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback, useSyncExternalStore } from "react";
 import { LanguageContext, type Locale } from "@/lib/translations";
 
-export default function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("en");
+function getStoredLocale(): Locale {
+  const stored = localStorage.getItem("locale");
+  return stored === "es" ? "es" : "en";
+}
 
-  useEffect(() => {
-    const stored = localStorage.getItem("locale");
-    if (stored === "en" || stored === "es") {
-      setLocaleState(stored);
-      document.documentElement.lang = stored;
-    }
-  }, []);
+export default function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const initialLocale = useSyncExternalStore(
+    () => () => {},
+    getStoredLocale,
+    () => "en" as Locale,
+  );
+
+  const [locale, setLocaleState] = useState<Locale>(initialLocale);
 
   const setLocale = useCallback((l: Locale) => {
     setLocaleState(l);

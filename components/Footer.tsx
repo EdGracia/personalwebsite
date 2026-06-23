@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FiGithub, FiMail } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import { useTranslation } from "@/lib/translations";
 
 const socialLinks = [
   { href: "https://github.com/EdGracia", icon: FiGithub, label: "GitHub" },
@@ -12,6 +13,7 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const { locale, setLocale } = useTranslation();
   const [time, setTime] = useState("");
 
   useEffect(() => {
@@ -47,8 +49,28 @@ export default function Footer() {
               MIA {time}
             </span>
           )}
-          <span className="hidden sm:inline font-mono text-[11px] tracking-wide text-text-tertiary">
-            EN / ES
+          <span className="hidden sm:inline-flex items-center gap-1 font-mono text-[11px] tracking-wide">
+            <button
+              onClick={() => setLocale("en")}
+              className={`transition-colors ${
+                locale === "en"
+                  ? "text-accent font-medium"
+                  : "text-text-tertiary hover:text-text-secondary"
+              }`}
+            >
+              EN
+            </button>
+            <span className="text-text-tertiary">/</span>
+            <button
+              onClick={() => setLocale("es")}
+              className={`transition-colors ${
+                locale === "es"
+                  ? "text-accent font-medium"
+                  : "text-text-tertiary hover:text-text-secondary"
+              }`}
+            >
+              ES
+            </button>
           </span>
         </div>
         <div className="flex items-center gap-4">

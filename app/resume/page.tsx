@@ -1,76 +1,6 @@
-const education = [
-  {
-    degree: "B.S. Software Engineering",
-    school: "University of Miami",
-    date: "Expected May 2028",
-    notes: ["Canes Achievement Award — $12,000/year merit scholarship"],
-  },
-];
+"use client";
 
-const experience = [
-  {
-    title: "Summer Engineering Intern",
-    org: "Ensel Technologies LLC",
-    date: "May 2024 – July 2025",
-    bullets: [
-      "Assisted engineers in monitoring and maintaining factory production systems and machinery operations.",
-    ],
-  },
-  {
-    title: "President & Lead Analyst",
-    org: "Loomis Chaffee ESG Investment Fund",
-    date: "Sept 2022 – May 2023",
-    bullets: [
-      "Led a team of student researchers analyzing equities for a $150,000 investment portfolio.",
-      "Presented investment recommendations to the board of trustees alongside the CFO.",
-    ],
-  },
-];
-
-const projects = [
-  {
-    title: "3D Game Engine",
-    tech: "C++, raylib",
-    bullets: [
-      "Building a custom 3D engine from scratch as the foundation for an original game.",
-      "Handles rendering, scene management, and core engine architecture.",
-    ],
-  },
-  {
-    title: "2D Platformer",
-    tech: "C++, raylib",
-    bullets: [
-      "Built a custom 2D platformer with hand-rolled collision detection, camera systems, enemy AI, and player movement.",
-      "Structured with OOP principles, header files, and Makefiles. Version controlled with Git.",
-    ],
-  },
-];
-
-const skills = {
-  Languages: ["C++", "Python", "Java", "JavaScript", "TypeScript"],
-  Tools: ["Git", "GitHub", "Makefiles", "raylib", "React", "Next.js"],
-};
-
-const coursework = [
-  "ECE 218: Data Structures (C++)",
-  "ECE 118: Introduction to Programming (C++)",
-  "ENG 123: Computing and Digital Solutions (Python)",
-];
-
-const awards = [
-  {
-    title: "Canes Achievement Award",
-    org: "University of Miami",
-    date: "June 2024",
-    detail: "$12,000/year for four years. Maintained 3.0 GPA with full-time course load.",
-  },
-  {
-    title: "Barry M. Moran Mathematics Award",
-    org: "The Loomis Chaffee School",
-    date: "May 2024",
-    detail: "Top of class in Mathematics for the 2023–2024 school year.",
-  },
-];
+import { useTranslation } from "@/lib/translations";
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
@@ -84,13 +14,78 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 }
 
 export default function Resume() {
+  const { t } = useTranslation();
+
+  const education = [
+    {
+      degree: t("resumePage.edu.degree"),
+      school: "University of Miami",
+      date: t("resumePage.edu.date"),
+      notes: [t("resumePage.edu.note")],
+    },
+  ];
+
+  const experience = [
+    {
+      title: t("resumePage.exp1.title"),
+      org: "Ensel Technologies LLC",
+      date: t("resumePage.exp1.date"),
+      bullets: [t("resumePage.exp1.bullet1")],
+    },
+    {
+      title: t("resumePage.exp2.title"),
+      org: "Loomis Chaffee ESG Investment Fund",
+      date: t("resumePage.exp2.date"),
+      bullets: [t("resumePage.exp2.bullet1"), t("resumePage.exp2.bullet2")],
+    },
+  ];
+
+  const projects = [
+    {
+      title: t("resumePage.proj1.title"),
+      tech: "C++, raylib",
+      bullets: [t("resumePage.proj1.bullet1"), t("resumePage.proj1.bullet2")],
+    },
+    {
+      title: t("resumePage.proj2.title"),
+      tech: "C++, raylib",
+      bullets: [t("resumePage.proj2.bullet1"), t("resumePage.proj2.bullet2")],
+    },
+  ];
+
+  const skills = {
+    [t("capabilities.languages")]: ["C++", "Python", "Java", "JavaScript", "TypeScript"],
+    [t("capabilities.tools")]: ["Git", "GitHub", "Makefiles", "raylib", "React", "Next.js"],
+  };
+
+  const coursework = [
+    "ECE 218: Data Structures (C++)",
+    "ECE 118: Introduction to Programming (C++)",
+    "ENG 123: Computing and Digital Solutions (Python)",
+  ];
+
+  const awards = [
+    {
+      title: t("resumePage.award1.title"),
+      org: "University of Miami",
+      date: t("resumePage.award1.date"),
+      detail: t("resumePage.award1.detail"),
+    },
+    {
+      title: t("resumePage.award2.title"),
+      org: "The Loomis Chaffee School",
+      date: t("resumePage.award2.date"),
+      detail: t("resumePage.award2.detail"),
+    },
+  ];
+
   return (
     <main className="mx-auto w-full max-w-3xl px-6 py-24">
 
       <div className="flex items-start justify-between">
         <div>
           <h1 className="font-display text-3xl font-bold tracking-tight text-text-primary">Eduardo Gracia Panini</h1>
-          <p className="mt-1 font-body text-text-secondary">Software Engineering Student</p>
+          <p className="mt-1 font-body text-text-secondary">{t("resumePage.subtitle")}</p>
         </div>
         <div className="text-right font-mono text-[11px] text-text-tertiary">
           <p>Exg2332@miami.edu</p>
@@ -101,7 +96,7 @@ export default function Resume() {
       <div className="mt-12 flex flex-col gap-12">
 
         <section>
-          <SectionHeading>Education</SectionHeading>
+          <SectionHeading>{t("resumePage.education")}</SectionHeading>
           {education.map((e) => (
             <div key={e.degree} className="flex justify-between gap-4">
               <div>
@@ -117,7 +112,7 @@ export default function Resume() {
         </section>
 
         <section>
-          <SectionHeading>Experience</SectionHeading>
+          <SectionHeading>{t("resumePage.experience")}</SectionHeading>
           <div className="flex flex-col gap-6">
             {experience.map((e) => (
               <div key={e.title}>
@@ -139,7 +134,7 @@ export default function Resume() {
         </section>
 
         <section>
-          <SectionHeading>Projects</SectionHeading>
+          <SectionHeading>{t("resumePage.projects")}</SectionHeading>
           <div className="flex flex-col gap-6">
             {projects.map((p) => (
               <div key={p.title}>
@@ -160,7 +155,7 @@ export default function Resume() {
         </section>
 
         <section>
-          <SectionHeading>Skills</SectionHeading>
+          <SectionHeading>{t("resumePage.skills")}</SectionHeading>
           <div className="flex flex-col gap-3">
             {Object.entries(skills).map(([category, items]) => (
               <div key={category} className="flex gap-8">
@@ -172,7 +167,7 @@ export default function Resume() {
         </section>
 
         <section>
-          <SectionHeading>Coursework</SectionHeading>
+          <SectionHeading>{t("resumePage.coursework")}</SectionHeading>
           <div className="flex flex-col gap-1">
             {coursework.map((c) => (
               <p key={c} className="font-body text-sm text-text-secondary">{c}</p>
@@ -181,7 +176,7 @@ export default function Resume() {
         </section>
 
         <section>
-          <SectionHeading>Awards</SectionHeading>
+          <SectionHeading>{t("resumePage.awards")}</SectionHeading>
           <div className="flex flex-col gap-4">
             {awards.map((a) => (
               <div key={a.title} className="flex justify-between gap-4">

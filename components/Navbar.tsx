@@ -5,13 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
-
-const links = [
-  { href: "/#about", label: "About", id: "about" },
-  { href: "/#projects", label: "Projects", id: "projects" },
-  { href: "/blog", label: "Blog", id: "blog" },
-  { href: "/#resume", label: "Resume", id: "resume" },
-];
+import { useTranslation } from "@/lib/translations";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -20,11 +14,20 @@ export default function Navbar() {
   const { setTheme, resolvedTheme } = useTheme();
   const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { t } = useTranslation();
+
+  const links = [
+    { href: "/#about", label: t("nav.about"), id: "about" },
+    { href: "/#projects", label: t("nav.projects"), id: "projects" },
+    { href: "/blog", label: t("nav.blog"), id: "blog" },
+    { href: "/#resume", label: t("nav.resume"), id: "resume" },
+  ];
 
   useEffect(() => {
     if (!isHome) return;
+    const sectionIds = ["about", "projects", "blog", "resume"];
     const observers: IntersectionObserver[] = [];
-    links.forEach(({ id }) => {
+    sectionIds.forEach((id) => {
       const el = document.getElementById(id);
       if (!el) return;
       const observer = new IntersectionObserver(

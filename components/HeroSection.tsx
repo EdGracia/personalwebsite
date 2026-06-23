@@ -5,6 +5,7 @@ import { FiGithub, FiMail } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
 import { useSyncExternalStore } from "react";
 import Glyph from "./Glyph";
+import { useTranslation } from "@/lib/translations";
 
 const subscribe = () => () => {};
 const getSnapshot = () => true;
@@ -12,6 +13,7 @@ const getServerSnapshot = () => false;
 
 export default function HeroSection() {
   const mounted = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const { t } = useTranslation();
 
   const clipStyle = (delay: number): React.CSSProperties =>
     mounted
@@ -76,13 +78,12 @@ export default function HeroSection() {
           </div>
 
           <p className="max-w-md font-body text-lg leading-relaxed text-text-secondary">
-            A student passionate about all things software who dives deep into
-            low-level systems, computer graphics, and graphics engine architecture.
+            {t("hero.bio")}
           </p>
 
           <div className="flex flex-col gap-1 font-mono text-[11px] uppercase tracking-[0.05em] text-text-tertiary">
-            <span>SWE @ University of Miami</span>
-            <span>Systems / Graphics / Engines</span>
+            <span>{t("hero.role")}</span>
+            <span>{t("hero.focus")}</span>
           </div>
 
           <div className="flex items-center gap-4">
