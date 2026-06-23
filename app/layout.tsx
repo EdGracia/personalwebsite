@@ -3,6 +3,7 @@ import { Instrument_Sans, Geist, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ParallaxLayer from "@/components/ParallaxLayer";
 import AmbientField from "@/components/AmbientField";
 import SandField from "@/components/SandField";
 import { SandInteractionProvider } from "@/components/SandInteractionContext";
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-bg-deep text-text-primary" suppressHydrationWarning>
         <ThemeProvider>
           <SandInteractionProvider>
+            <ParallaxLayer />
             <AmbientField />
             <SandField />
             <ScrollEngine />

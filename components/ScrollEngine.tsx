@@ -37,11 +37,13 @@ export default function ScrollEngine() {
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       const progress = maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
 
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
       const root = document.documentElement;
       root.style.setProperty("--scroll-progress", String(progress));
 
-      const farOffset = scrollY * 0.2;
-      const midOffset = scrollY * 0.5;
+      const farOffset = reducedMotion ? 0 : scrollY * 0.2;
+      const midOffset = reducedMotion ? 0 : scrollY * 0.5;
       root.style.setProperty("--scroll-far", `${farOffset}px`);
       root.style.setProperty("--scroll-mid", `${midOffset}px`);
 

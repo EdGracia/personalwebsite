@@ -89,6 +89,8 @@ export default function AmbientField() {
       style={{
         mask: "linear-gradient(to bottom, transparent 0%, transparent 60%, black 85%)",
         WebkitMask: "linear-gradient(to bottom, transparent 0%, transparent 60%, black 85%)",
+        transform: "translateY(calc(var(--scroll-mid, 0px) * -1))",
+        willChange: "transform",
       }}
     />
   );
