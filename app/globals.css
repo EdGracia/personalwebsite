@@ -2,37 +2,37 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --bg-deep: #f5f4f1;
-  --bg-base: #fafaf8;
+  --bg-deep: #f4ede4;
+  --bg-base: #faf6f0;
   --bg-elevated: #ffffff;
-  --bg-surface: #f0efec;
-  --border-subtle: #e2e0db;
-  --border-active: #d0cec9;
-  --text-primary: #1a1a22;
-  --text-secondary: #5a5a6a;
-  --text-tertiary: #8a8a95;
-  --accent: #3d5afe;
-  --accent-muted: #8a9fd4;
-  --accent-glow: rgba(61, 90, 254, 0.12);
-  --signal: #4a8a20;
-  --signal-bg: rgba(74, 138, 32, 0.1);
+  --bg-surface: #ede6db;
+  --border-subtle: #ddd4c6;
+  --border-active: #c9bda9;
+  --text-primary: #1a1610;
+  --text-secondary: #6b5f51;
+  --text-tertiary: #9a8e7e;
+  --accent: #1a6fb5;
+  --accent-muted: #7baacf;
+  --accent-glow: rgba(26, 111, 181, 0.12);
+  --signal: #d4763a;
+  --signal-bg: rgba(212, 118, 58, 0.1);
 }
 
 .dark {
-  --bg-deep: #08080c;
-  --bg-base: #0e0e14;
-  --bg-elevated: #15151e;
-  --bg-surface: #1c1c28;
-  --border-subtle: #1e1e2a;
-  --border-active: #2a2a3a;
-  --text-primary: #e8e6e3;
-  --text-secondary: #8a8a9a;
-  --text-tertiary: #55556a;
-  --accent: #6e8eff;
-  --accent-muted: #4a5f99;
-  --accent-glow: rgba(110, 142, 255, 0.15);
-  --signal: #c4f070;
-  --signal-bg: rgba(196, 240, 112, 0.1);
+  --bg-deep: #0a0a12;
+  --bg-base: #0f0f1a;
+  --bg-elevated: #161624;
+  --bg-surface: #1c1c2e;
+  --border-subtle: #1e1e32;
+  --border-active: #2a2a42;
+  --text-primary: #e8e2d8;
+  --text-secondary: #9a9080;
+  --text-tertiary: #5a5448;
+  --accent: #d4a24c;
+  --accent-muted: #8a7040;
+  --accent-glow: rgba(212, 162, 76, 0.15);
+  --signal: #e8724a;
+  --signal-bg: rgba(232, 114, 74, 0.1);
 }
 
 @theme inline {
