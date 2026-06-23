@@ -1,5 +1,6 @@
 import { getAllPosts, formatDate } from "@/lib/posts";
 import HomeContent from "@/components/HomeContent";
+import GitHubGraph from "@/components/GitHubGraph";
 
 export default function Home() {
   const recentPosts = getAllPosts().slice(0, 3).map((post) => ({
@@ -9,5 +10,5 @@ export default function Home() {
     formattedDate: formatDate(post.date),
   }));
 
-  return <HomeContent recentPosts={recentPosts} />;
+  return <HomeContent recentPosts={recentPosts} githubGraph={<GitHubGraph />} />;
 }

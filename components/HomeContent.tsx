@@ -5,7 +5,7 @@ import Image from "next/image";
 import RevealGroup from "@/components/RevealGroup";
 import SectionHeader from "@/components/SectionHeader";
 import StatusBadge from "@/components/StatusBadge";
-import GitHubGraph from "@/components/GitHubGraph";
+import type { ReactNode } from "react";
 import TerrainDivider from "@/components/TerrainDivider";
 import Glyph from "@/components/Glyph";
 import SpiceBloom from "@/components/SpiceBloom";
@@ -25,7 +25,7 @@ interface Post {
   formattedDate: string;
 }
 
-export default function HomeContent({ recentPosts }: { recentPosts: Post[] }) {
+export default function HomeContent({ recentPosts, githubGraph }: { recentPosts: Post[]; githubGraph: ReactNode }) {
   const { t } = useTranslation();
 
   const skillGroups: {
@@ -165,7 +165,7 @@ export default function HomeContent({ recentPosts }: { recentPosts: Post[] }) {
               <p className="mt-4 font-body leading-relaxed text-text-secondary">
                 {t("about.bio2")}
               </p>
-              <GitHubGraph />
+              {githubGraph}
             </div>
           </div>
         </RevealGroup>
