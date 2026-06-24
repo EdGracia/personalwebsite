@@ -18,8 +18,42 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-body" });
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
-  title: "Ed Gracia",
-  description: "Software engineer, student, and builder.",
+  metadataBase: new URL("https://edgracia.dev"),
+  title: {
+    default: "Ed Gracia — Software Engineer",
+    template: "%s | Ed Gracia",
+  },
+  description:
+    "Software Engineering student at the University of Miami specializing in systems programming, graphics, and C++. Explore projects, blog posts, and resume.",
+  keywords: [
+    "Ed Gracia",
+    "software engineer",
+    "portfolio",
+    "University of Miami",
+    "C++",
+    "systems programming",
+    "graphics",
+    "Next.js",
+    "React",
+    "TypeScript",
+  ],
+  authors: [{ name: "Ed Gracia", url: "https://edgracia.dev" }],
+  creator: "Ed Gracia",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://edgracia.dev",
+    siteName: "Ed Gracia",
+    title: "Ed Gracia — Software Engineer",
+    description:
+      "Software Engineering student at the University of Miami specializing in systems programming, graphics, and C++.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ed Gracia — Software Engineer",
+    description:
+      "Software Engineering student at the University of Miami specializing in systems programming, graphics, and C++.",
+  },
   verification: {
     google: "tfEojaryUZcDOgvXxdeD0kzK3hV5AcbM9M0s6AO1_-4",
   },
