@@ -45,14 +45,17 @@ export default async function GitHubGraph() {
           GitHub Activity
         </p>
       </div>
-      <div className="flex gap-px">
+      <div
+        className="grid gap-[1px]"
+        style={{ gridTemplateColumns: `repeat(${weeks.length}, 1fr)` }}
+      >
         {weeks.map((week, wi) => (
-          <div key={wi} className="flex flex-col gap-px">
+          <div key={wi} className="grid grid-rows-7 gap-[1px]">
             {week.map((day) => (
               <div
                 key={day.date}
                 title={`${day.date}: ${day.count} contributions`}
-                className={`w-[9px] h-[9px] rounded-[1px] ${levelColors[day.level] ?? levelColors[0]}`}
+                className={`aspect-square rounded-[1px] ${levelColors[day.level] ?? levelColors[0]}`}
               />
             ))}
           </div>
