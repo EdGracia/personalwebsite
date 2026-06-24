@@ -18,7 +18,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "nav.resume": "Resume",
 
     // Hero
-    "hero.bio": "A student passionate about all things software who dives deep into low-level systems, computer graphics, and graphics engine architecture.",
+    "hero.bio": "A Software Engineering student with an interest in low-level systems and graphics engines. Currently building graphics engines from scratch in C++.",
     "hero.role": "SWE @ University of Miami",
     "hero.focus": "Systems / Graphics / Engines",
 
@@ -30,8 +30,8 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // About section (homepage)
     "about.title": "About",
-    "about.bio1": "I'm a Software Engineering student at the University of Miami, originally from Houston, Texas. I care about building things at the lowest level possible — where performance is a craft, not an afterthought.",
-    "about.bio2": "I speak English and Spanish natively, which has shaped how I think about communication in code as much as in conversation.",
+    "about.bio1": "I'm a bilingual student at the University of Miami, originally from Houston, Texas. I found a real satisfaction in understanding how software controls hardware at the lowest level.",
+    "about.bio2": "I'm consistently inspired by technology that is highly efficient and well thought out, and I aspire to grow my skills to build software like that myself.",
     "about.label.building": "Building",
     "about.label.studying": "Studying",
     "about.label.based": "Based in",
@@ -42,14 +42,16 @@ const translations: Record<Locale, Record<string, string>> = {
     // Projects section (homepage)
     "projects.title": "Projects",
     "projects.engine.title": "3D Game Engine",
-    "projects.engine.description": "A from-scratch 3D engine built in C++ using raylib. Handles rendering, scene management, and serves as the foundation for an original game. Actively in development.",
+    "projects.engine.description": "A starting point for 3D physics-based games. Designed to give developers the essential tools to build complete 3D games in C++ using raylib.",
     "projects.platformer.title": "2D Platformer",
-    "projects.platformer.description": "A 2D platformer built in C++ with raylib. Custom physics, collision detection, and sprite handling — written without a game framework to stay close to the metal.",
+    "projects.platformer.description": "A personal 2D platformer built entirely from scratch in C++. Currently incomplete, but includes an animation controller, parallax backgrounds, pixel-perfect graphics, and a custom physics system.",
     "projects.ensel.title": "Ensel Technologies",
-    "projects.ensel.description": "Corporate website for an ISO-certified membrane switch manufacturer serving medical, industrial, and food processing OEMs. Built with Next.js and hosted on Vercel.",
+    "projects.ensel.description": "A complete website redesign I built during my internship. This project taught me web development, hosting, and SEO, and the result outperformed the company's previous site.",
     "projects.status.inProgress": "In Progress",
     "projects.status.incomplete": "Incomplete",
     "projects.status.complete": "Complete",
+
+    "projects.allProjects": "All projects →",
 
     // Blog section (homepage + blog page)
     "blog.title": "Blog",
@@ -68,8 +70,8 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // About page
     "aboutPage.title": "About",
-    "aboutPage.bio1": "I'm a Software Engineering student at the University of Miami, originally from Houston, Texas. I care about building things at the lowest level possible — where performance is a craft, not an afterthought.",
-    "aboutPage.bio2": "I speak English and Spanish natively, which has shaped how I think about communication in code as much as in conversation.",
+    "aboutPage.bio1": "I'm a bilingual student at the University of Miami, originally from Houston, Texas. I found a real satisfaction in understanding how software controls hardware at the lowest level.",
+    "aboutPage.bio2": "I'm consistently inspired by technology that is highly efficient and well thought out, and I aspire to grow my skills to build software like that myself.",
     "aboutPage.currently": "Currently",
     "aboutPage.building.label": "Building",
     "aboutPage.building.value": "A 3D game engine from scratch — the foundation for a game I'm designing.",
@@ -82,11 +84,11 @@ const translations: Record<Locale, Record<string, string>> = {
     "projectsPage.title": "Projects",
     "projectsPage.subtitle": "Things I've built or am currently building.",
     "projectsPage.engine.title": "3D Game Engine",
-    "projectsPage.engine.description": "A from-scratch 3D engine built in C++ using raylib. Handles rendering, scene management, and serves as the foundation for an original game. Actively in development.",
+    "projectsPage.engine.description": "A starting point for 3D physics-based games. Designed to give developers the essential tools to build complete 3D games in C++ using raylib.",
     "projectsPage.platformer.title": "2D Platformer",
-    "projectsPage.platformer.description": "A 2D platformer built in C++ with raylib. Custom physics, collision detection, and sprite handling — written without a game framework to stay close to the metal.",
+    "projectsPage.platformer.description": "A personal 2D platformer built entirely from scratch in C++. Currently incomplete, but includes an animation controller, parallax backgrounds, pixel-perfect graphics, and a custom physics system.",
     "projectsPage.ensel.title": "Ensel Technologies",
-    "projectsPage.ensel.description": "Corporate website for an ISO-certified membrane switch manufacturer serving medical, industrial, and food processing OEMs. Built with Next.js and hosted on Vercel.",
+    "projectsPage.ensel.description": "A complete website redesign I built during my internship. This project taught me web development, hosting, and SEO, and the result outperformed the company's previous site.",
 
     // Resume page
     "resumePage.subtitle": "Software Engineering Student",
@@ -127,7 +129,7 @@ const translations: Record<Locale, Record<string, string>> = {
     "nav.resume": "Currículum",
 
     // Hero
-    "hero.bio": "Un estudiante apasionado por todo lo relacionado con el software, que profundiza en sistemas de bajo nivel, gráficos por computadora y arquitectura de motores gráficos.",
+    "hero.bio": "Estudiante de Ingeniería de Software con interés en sistemas de bajo nivel y motores gráficos. Actualmente construyendo motores gráficos desde cero en C++.",
     "hero.role": "Ing. de Software @ University of Miami",
     "hero.focus": "Sistemas / Gráficos / Motores",
 
@@ -139,8 +141,8 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // About section (homepage)
     "about.title": "Sobre mí",
-    "about.bio1": "Soy estudiante de Ingeniería de Software en la University of Miami, originario de Houston, Texas. Me importa construir cosas al nivel más bajo posible — donde el rendimiento es un oficio, no algo secundario.",
-    "about.bio2": "Hablo inglés y español de forma nativa, lo cual ha moldeado cómo pienso sobre la comunicación en el código tanto como en la conversación.",
+    "about.bio1": "Soy un estudiante bilingüe en la University of Miami, originario de Houston, Texas. Encontré una verdadera satisfacción en entender cómo el software controla el hardware al nivel más bajo.",
+    "about.bio2": "Me inspira constantemente la tecnología que es altamente eficiente y bien pensada, y aspiro a desarrollar mis habilidades para construir software así yo mismo.",
     "about.label.building": "Creando",
     "about.label.studying": "Estudiando",
     "about.label.based": "Ubicación",
@@ -151,14 +153,16 @@ const translations: Record<Locale, Record<string, string>> = {
     // Projects section (homepage)
     "projects.title": "Proyectos",
     "projects.engine.title": "Motor de Juegos 3D",
-    "projects.engine.description": "Un motor 3D construido desde cero en C++ con raylib. Maneja renderizado, gestión de escenas y sirve como base para un juego original. En desarrollo activo.",
+    "projects.engine.description": "Un punto de partida para juegos 3D basados en física. Diseñado para dar a los desarrolladores las herramientas esenciales para construir juegos 3D completos en C++ usando raylib.",
     "projects.platformer.title": "Plataformas 2D",
-    "projects.platformer.description": "Un juego de plataformas 2D construido en C++ con raylib. Físicas propias, detección de colisiones y manejo de sprites — escrito sin un framework de juegos para estar cerca del metal.",
+    "projects.platformer.description": "Un juego de plataformas 2D personal, construido completamente desde cero en C++. Actualmente incompleto, pero incluye un controlador de animaciones, fondos con parallax, gráficos pixel-perfect y un sistema de físicas propio.",
     "projects.ensel.title": "Ensel Technologies",
-    "projects.ensel.description": "Sitio web corporativo para un fabricante certificado ISO de switches de membrana que sirve a OEMs médicos, industriales y de procesamiento de alimentos. Construido con Next.js y alojado en Vercel.",
+    "projects.ensel.description": "Un rediseño completo del sitio web que construí durante mi pasantía. Este proyecto me enseñó desarrollo web, hosting y SEO, y el resultado superó al sitio anterior de la empresa.",
     "projects.status.inProgress": "En progreso",
     "projects.status.incomplete": "Incompleto",
     "projects.status.complete": "Completo",
+
+    "projects.allProjects": "Todos los proyectos →",
 
     // Blog section (homepage + blog page)
     "blog.title": "Blog",
@@ -177,8 +181,8 @@ const translations: Record<Locale, Record<string, string>> = {
 
     // About page
     "aboutPage.title": "Sobre mí",
-    "aboutPage.bio1": "Soy estudiante de Ingeniería de Software en la University of Miami, originario de Houston, Texas. Me importa construir cosas al nivel más bajo posible — donde el rendimiento es un oficio, no algo secundario.",
-    "aboutPage.bio2": "Hablo inglés y español de forma nativa, lo cual ha moldeado cómo pienso sobre la comunicación en el código tanto como en la conversación.",
+    "aboutPage.bio1": "Soy un estudiante bilingüe en la University of Miami, originario de Houston, Texas. Encontré una verdadera satisfacción en entender cómo el software controla el hardware al nivel más bajo.",
+    "aboutPage.bio2": "Me inspira constantemente la tecnología que es altamente eficiente y bien pensada, y aspiro a desarrollar mis habilidades para construir software así yo mismo.",
     "aboutPage.currently": "Actualmente",
     "aboutPage.building.label": "Creando",
     "aboutPage.building.value": "Un motor de juegos 3D desde cero — la base de un juego que estoy diseñando.",
@@ -191,11 +195,11 @@ const translations: Record<Locale, Record<string, string>> = {
     "projectsPage.title": "Proyectos",
     "projectsPage.subtitle": "Cosas que he construido o estoy construyendo actualmente.",
     "projectsPage.engine.title": "Motor de Juegos 3D",
-    "projectsPage.engine.description": "Un motor 3D construido desde cero en C++ con raylib. Maneja renderizado, gestión de escenas y sirve como base para un juego original. En desarrollo activo.",
+    "projectsPage.engine.description": "Un punto de partida para juegos 3D basados en física. Diseñado para dar a los desarrolladores las herramientas esenciales para construir juegos 3D completos en C++ usando raylib.",
     "projectsPage.platformer.title": "Plataformas 2D",
-    "projectsPage.platformer.description": "Un juego de plataformas 2D construido en C++ con raylib. Físicas propias, detección de colisiones y manejo de sprites — escrito sin un framework de juegos para estar cerca del metal.",
+    "projectsPage.platformer.description": "Un juego de plataformas 2D personal, construido completamente desde cero en C++. Actualmente incompleto, pero incluye un controlador de animaciones, fondos con parallax, gráficos pixel-perfect y un sistema de físicas propio.",
     "projectsPage.ensel.title": "Ensel Technologies",
-    "projectsPage.ensel.description": "Sitio web corporativo para un fabricante certificado ISO de switches de membrana que sirve a OEMs médicos, industriales y de procesamiento de alimentos. Construido con Next.js y alojado en Vercel.",
+    "projectsPage.ensel.description": "Un rediseño completo del sitio web que construí durante mi pasantía. Este proyecto me enseñó desarrollo web, hosting y SEO, y el resultado superó al sitio anterior de la empresa.",
 
     // Resume page
     "resumePage.subtitle": "Estudiante de Ingeniería de Software",

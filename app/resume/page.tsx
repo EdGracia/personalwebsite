@@ -89,8 +89,7 @@ export default function Resume() {
           <p className="mt-1 font-body text-text-secondary">{t("resumePage.subtitle")}</p>
         </div>
         <div className="text-right font-mono text-[11px] text-text-tertiary">
-          <p>Exg2332@miami.edu</p>
-          <p>832-533-6990</p>
+          <p>exg2332@miami.edu</p>
         </div>
       </div>
 

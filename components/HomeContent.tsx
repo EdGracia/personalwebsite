@@ -59,25 +59,31 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
 
   const projects = [
     {
+      slug: "ensel",
       title: t("projects.ensel.title"),
       description: t("projects.ensel.description"),
       tags: ["Next.js", "React", "TypeScript", "Vercel"],
       status: t("projects.status.complete"),
       link: "https://enseltech.com",
+      image: "/images/projects/ensel-preview.png",
     },
     {
+      slug: "engine",
       title: t("projects.engine.title"),
       description: t("projects.engine.description"),
       tags: ["C++", "raylib", "Graphics", "Systems"],
       status: t("projects.status.inProgress"),
       github: "https://github.com/EdGracia/Sandbox",
+      image: "/images/projects/sandbox-preview.png",
     },
     {
+      slug: "platformer",
       title: t("projects.platformer.title"),
       description: t("projects.platformer.description"),
       tags: ["C++", "raylib", "Game Dev"],
       status: t("projects.status.incomplete"),
       github: "https://github.com/EdGracia/Platformer",
+      image: "/images/projects/platformer-preview.png",
     },
   ];
 
@@ -162,50 +168,60 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
         </RevealGroup>
       </section>
 
-      {/* ── Projects — Staggered Cards ── */}
+      {/* ── Projects — Card Grid ── */}
       <section id="projects" className="py-24">
         <div className="mx-auto max-w-5xl px-6">
           <RevealGroup>
             <SectionHeader title={t("projects.title")} sectionId="projects" />
           </RevealGroup>
         </div>
-        <div className="mx-auto max-w-5xl px-6 flex flex-col gap-8">
+        <div className="mx-auto max-w-5xl px-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
             <RevealGroup key={project.title}>
-              <div
-                className="group relative overflow-hidden rounded-xl border border-border-subtle bg-bg-elevated p-8 transition-all duration-300 hover:border-border-active hover:shadow-lg hover:shadow-accent-glow"
+              <Link
+                href={`/projects?expand=${project.slug}`}
+                className="group relative flex flex-col overflow-hidden rounded-xl border border-border-subtle bg-bg-elevated transition-all duration-300 hover:border-border-active hover:shadow-lg hover:shadow-accent-glow/50 hover:-translate-y-0.5"
               >
-                <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-accent origin-top transition-transform duration-300 scale-y-0 group-hover:scale-y-100" />
-                <div className="absolute inset-0 bg-gradient-to-r from-accent-glow to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <div className="relative">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                      <h3 className="font-display text-lg font-semibold text-text-primary transition-colors duration-200 group-hover:text-accent">{project.title}</h3>
+                <div className="relative aspect-[16/9] w-full overflow-hidden bg-bg-surface">
+                  {project.image ? (
+                    <Image
+                      src={project.image}
+                      alt={`${project.title} preview`}
+                      fill
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center">
+                      {project.github ? <FiGithub className="text-2xl text-text-tertiary/40" /> : <FiGlobe className="text-2xl text-text-tertiary/40" />}
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex flex-1 flex-col p-4">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-display text-sm font-semibold text-text-primary transition-colors duration-200 group-hover:text-accent">{project.title}</h3>
                       <StatusBadge status={project.status} />
                     </div>
-                    <Link
-                      href={project.github ?? project.link!}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={project.github ? `${project.title} on GitHub` : `${project.title} website`}
-                      className="flex shrink-0 items-center gap-1 text-sm text-text-tertiary transition-all duration-200 hover:text-accent"
-                    >
-                      {project.github ? <FiGithub className="text-base" /> : <FiGlobe className="text-base" />}
-                      <FiArrowUpRight className="text-xs transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </Link>
+                    <FiArrowUpRight className="shrink-0 text-sm text-text-tertiary transition-all duration-200 opacity-0 group-hover:opacity-100" />
                   </div>
-                  <p className="mt-3 font-body text-sm leading-relaxed text-text-secondary">{project.description}</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
+                  <p className="mt-1.5 font-body text-xs leading-relaxed text-text-secondary line-clamp-2">{project.description}</p>
+                  <div className="mt-auto flex flex-wrap gap-1.5 pt-3">
                     {project.tags.map((tag) => (
-                      <span key={tag} className="rounded-full bg-bg-surface px-3 py-1 font-mono text-[11px] font-medium text-text-tertiary transition-colors duration-200 group-hover:bg-bg-surface/80">
+                      <span key={tag} className="rounded-full bg-bg-surface px-2 py-0.5 font-mono text-[10px] font-medium text-text-tertiary">
                         {tag}
                       </span>
                     ))}
                   </div>
                 </div>
-              </div>
+              </Link>
             </RevealGroup>
           ))}
+        </div>
+        <div className="mx-auto max-w-5xl px-6 mt-4">
+          <Link href="/projects" className="inline-block font-display text-sm text-text-tertiary transition-colors hover:text-accent">
+            {t("projects.allProjects")}
+          </Link>
         </div>
       </section>
 

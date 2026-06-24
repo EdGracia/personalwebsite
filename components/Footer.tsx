@@ -8,7 +8,7 @@ import { useTranslation } from "@/lib/translations";
 const socialLinks = [
   { href: "https://github.com/EdGracia", icon: FiGithub, label: "GitHub" },
   { href: "https://www.linkedin.com/in/eduardo-ed-gracia/", icon: FaLinkedinIn, label: "LinkedIn" },
-  { href: "mailto:Exg2332@miami.edu", icon: FiMail, label: "Email" },
+  { href: "mailto:exg2332@miami.edu", icon: FiMail, label: "Email" },
 ];
 
 export default function Footer() {
