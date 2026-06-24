@@ -80,7 +80,8 @@ export default function Resume() {
   ];
 
   return (
-    <main className="mx-auto w-full max-w-3xl px-6 py-24">
+    <main className="relative z-[2] mx-auto w-full max-w-3xl px-6 py-24">
+      <div className="absolute -inset-x-24 inset-y-0 bg-bg-base -z-10" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }} />
 
       <div className="flex items-start justify-between">
         <div>

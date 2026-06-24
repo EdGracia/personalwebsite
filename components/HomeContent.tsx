@@ -143,7 +143,7 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
                 key={category}
                 className={span ?? ""}
               >
-                <div className="group h-full rounded-xl border border-border-subtle bg-bg-surface/50 p-6 transition-all duration-300 hover:border-border-active hover:bg-bg-surface">
+                <div className="group h-full rounded-xl border border-border-subtle bg-bg-surface/50 px-6 pt-4 pb-6 transition-all duration-300 hover:border-border-active hover:bg-bg-surface">
                   <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.05em] text-text-tertiary mb-4">
                     {category}
                   </h3>

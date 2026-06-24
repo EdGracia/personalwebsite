@@ -38,17 +38,23 @@ function drawParticles(
   particles.length = 0;
   particles.push(...alive);
 
+  ctx.lineWidth = 0.5;
   for (const p of particles) {
     p.x += p.vx;
     p.y += p.vy;
     p.vx *= 0.96;
     p.vy *= 0.96;
     const age = (now - p.born) / PARTICLE_LIFE;
-    const alpha = (1 - age) * 0.7;
+    const alpha = (1 - age) * 0.85;
+    const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy) || 1;
+    const len = 8 * (1 - age * 0.3);
+    const dx = (p.vx / speed) * len;
+    const dy = (p.vy / speed) * len;
     ctx.beginPath();
-    ctx.arc(p.x, p.y, p.size * (1 - age * 0.3), 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(180, 120, 40, ${alpha})`;
-    ctx.fill();
+    ctx.moveTo(p.x - dx * 0.5, p.y - dy * 0.5);
+    ctx.lineTo(p.x + dx * 0.5, p.y + dy * 0.5);
+    ctx.strokeStyle = `rgba(180, 120, 40, ${alpha})`;
+    ctx.stroke();
   }
 
   if (particles.length > 0) {

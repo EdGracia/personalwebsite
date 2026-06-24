@@ -100,26 +100,34 @@ export default function SandField() {
         if (g.y < -10) { g.y = h + 10; g.vx = 0; }
       }
 
-      const sandColor = "160, 140, 110";
-      const sandAlpha = 0.18 * densityMultiplier;
+      const lineLen = 12;
+
       const sandGrains = grains.current.filter((g) => !g.isSpice);
       ctx.beginPath();
       for (const g of sandGrains) {
-        ctx.moveTo(g.x + g.size, g.y);
-        ctx.arc(g.x, g.y, g.size, 0, Math.PI * 2);
+        const speed = Math.sqrt(g.vx * g.vx + g.vy * g.vy) || 1;
+        const dx = (g.vx / speed) * lineLen * (0.5 + g.layer * 0.5);
+        const dy = (g.vy / speed) * lineLen * (0.5 + g.layer * 0.5);
+        ctx.moveTo(g.x - dx * 0.5, g.y - dy * 0.5);
+        ctx.lineTo(g.x + dx * 0.5, g.y + dy * 0.5);
       }
-      ctx.fillStyle = `rgba(${sandColor}, ${sandAlpha})`;
-      ctx.fill();
+      ctx.strokeStyle = `rgba(160, 140, 110, ${0.25 * densityMultiplier})`;
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
 
       const spiceGrains = grains.current.filter((g) => g.isSpice);
       if (spiceGrains.length > 0) {
         ctx.beginPath();
         for (const g of spiceGrains) {
-          ctx.moveTo(g.x + g.size, g.y);
-          ctx.arc(g.x, g.y, g.size, 0, Math.PI * 2);
+          const speed = Math.sqrt(g.vx * g.vx + g.vy * g.vy) || 1;
+          const dx = (g.vx / speed) * lineLen * (0.5 + g.layer * 0.5);
+          const dy = (g.vy / speed) * lineLen * (0.5 + g.layer * 0.5);
+          ctx.moveTo(g.x - dx * 0.5, g.y - dy * 0.5);
+          ctx.lineTo(g.x + dx * 0.5, g.y + dy * 0.5);
         }
-        ctx.fillStyle = `rgba(180, 120, 40, ${0.08 * spiceIntensity})`;
-        ctx.fill();
+        ctx.strokeStyle = `rgba(180, 120, 40, ${0.15 * spiceIntensity})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
       }
 
       raf.current = requestAnimationFrame(draw);

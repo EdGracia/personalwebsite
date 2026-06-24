@@ -10,6 +10,7 @@ interface Particle {
   y: number;
   born: number;
   size: number;
+  angle: number;
 }
 
 export default function SpiceCursor() {
@@ -47,6 +48,7 @@ export default function SpiceCursor() {
         y: e.clientY,
         born: now,
         size: 1.5 + Math.random() * 1.5,
+        angle: Math.random() * Math.PI,
       });
 
       if (particles.current.length > MAX_PARTICLES) {
@@ -62,13 +64,18 @@ export default function SpiceCursor() {
         (p) => now - p.born < PARTICLE_LIFE
       );
 
+      ctx.lineWidth = 0.5;
       for (const p of particles.current) {
         const age = (now - p.born) / PARTICLE_LIFE;
-        const alpha = (1 - age) * 0.6;
+        const alpha = (1 - age) * 0.8;
+        const len = 6 * (1 - age * 0.5);
+        const dx = Math.cos(p.angle) * len;
+        const dy = Math.sin(p.angle) * len;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * (1 - age * 0.5), 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(180, 120, 40, ${alpha})`;
-        ctx.fill();
+        ctx.moveTo(p.x - dx * 0.5, p.y - dy * 0.5);
+        ctx.lineTo(p.x + dx * 0.5, p.y + dy * 0.5);
+        ctx.strokeStyle = `rgba(180, 120, 40, ${alpha})`;
+        ctx.stroke();
       }
 
       raf.current = requestAnimationFrame(draw);
