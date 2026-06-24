@@ -1,11 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import Glyph from "./Glyph";
-import type { GlyphName } from "./glyphs";
-
 interface SectionHeaderProps {
-  glyph: GlyphName;
   title: string;
   number?: string;
 }
@@ -13,7 +9,7 @@ interface SectionHeaderProps {
 const prefersReducedMotion = () =>
   typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-export default function SectionHeader({ glyph, title }: SectionHeaderProps) {
+export default function SectionHeader({ title }: SectionHeaderProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reducedMotion = useSyncExternalStore(
     () => () => {},
@@ -43,16 +39,6 @@ export default function SectionHeader({ glyph, title }: SectionHeaderProps) {
 
   return (
     <div ref={ref} className="group mb-10 flex items-center gap-4">
-      <span
-        className="text-text-tertiary transition-all duration-200 group-hover:text-accent group-hover:rotate-[15deg]"
-        style={{
-          opacity: show ? 1 : 0,
-          transform: show ? undefined : "translateX(-8px)",
-          transition: "opacity 0.5s, transform 0.5s, color 0.2s",
-        }}
-      >
-        <Glyph name={glyph} size={20} />
-      </span>
       <h2
         className="relative font-display text-2xl font-bold tracking-tight text-text-primary transition-all duration-500 delay-100"
         style={{

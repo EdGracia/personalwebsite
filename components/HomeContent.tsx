@@ -6,8 +6,6 @@ import RevealGroup from "@/components/RevealGroup";
 import SectionHeader from "@/components/SectionHeader";
 import StatusBadge from "@/components/StatusBadge";
 import type { ReactNode } from "react";
-import TerrainDivider from "@/components/TerrainDivider";
-import Glyph from "@/components/Glyph";
 import SpiceBloom from "@/components/SpiceBloom";
 import HeroSection from "@/components/HeroSection";
 import { FiGithub, FiArrowUpRight, FiGlobe } from "react-icons/fi";
@@ -16,7 +14,6 @@ import {
   SiCplusplus, SiC, SiPython, SiJavascript,
   SiTypescript, SiReact, SiNextdotjs, SiGit, SiLinux,
 } from "react-icons/si";
-import type { GlyphName } from "@/components/glyphs";
 
 interface Post {
   slug: string;
@@ -30,13 +27,11 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
 
   const skillGroups: {
     category: string;
-    glyph: GlyphName;
     items: { icon: typeof SiCplusplus; label: string }[];
     span?: string;
   }[] = [
     {
       category: t("capabilities.languages"),
-      glyph: "languages",
       span: "col-span-2 row-span-2",
       items: [
         { icon: SiCplusplus, label: "C++" },
@@ -48,7 +43,6 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
     },
     {
       category: t("capabilities.frameworks"),
-      glyph: "frameworks",
       items: [
         { icon: SiReact, label: "React" },
         { icon: SiNextdotjs, label: "Next.js" },
@@ -56,7 +50,6 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
     },
     {
       category: t("capabilities.tools"),
-      glyph: "tools",
       items: [
         { icon: SiGit, label: "Git" },
         { icon: SiLinux, label: "Linux" },
@@ -94,13 +87,10 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
       <HeroSection />
 
       {/* ── About — Asymmetric Editorial ── */}
-      <div className="mx-auto max-w-5xl px-6">
-        <TerrainDivider seed={1} />
-      </div>
       <section id="about" className="py-24">
         <div className="mx-auto max-w-5xl px-6">
           <RevealGroup>
-            <SectionHeader glyph="about" title={t("about.title")} />
+            <SectionHeader title={t("about.title")} />
           </RevealGroup>
         </div>
         <RevealGroup>
@@ -144,25 +134,19 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
       </section>
 
       {/* ── Capabilities — Bento Grid ── */}
-      <div className="mx-auto max-w-5xl px-6">
-        <TerrainDivider seed={3} />
-      </div>
       <section id="capabilities" className="mx-auto max-w-5xl px-6 py-24">
         <RevealGroup>
-          <SectionHeader glyph="capabilities" title={t("capabilities.title")} />
+          <SectionHeader title={t("capabilities.title")} />
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {skillGroups.map(({ category, glyph, items, span }) => (
+            {skillGroups.map(({ category, items, span }) => (
               <SpiceBloom
                 key={category}
                 className={span ?? ""}
               >
                 <div className="group h-full rounded-xl border border-border-subtle bg-bg-surface/50 p-6 transition-all duration-300 hover:border-border-active hover:bg-bg-surface">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Glyph name={glyph} size={14} className="text-text-tertiary transition-colors duration-200 group-hover:text-accent" />
-                    <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.05em] text-text-tertiary">
-                      {category}
-                    </h3>
-                  </div>
+                  <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.05em] text-text-tertiary mb-4">
+                    {category}
+                  </h3>
                   <div className="flex flex-col gap-2.5">
                     {items.map(({ icon: Icon, label }) => (
                       <span key={label} className="flex items-center gap-2.5 font-mono text-sm text-text-secondary transition-all duration-200 hover:text-text-primary hover:translate-x-1 cursor-default">
@@ -179,13 +163,10 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
       </section>
 
       {/* ── Projects — Staggered Cards ── */}
-      <div className="mx-auto max-w-5xl px-6">
-        <TerrainDivider seed={7} />
-      </div>
       <section id="projects" className="py-24">
         <div className="mx-auto max-w-5xl px-6">
           <RevealGroup>
-            <SectionHeader glyph="projects" title={t("projects.title")} />
+            <SectionHeader title={t("projects.title")} />
           </RevealGroup>
         </div>
         <div className="mx-auto max-w-5xl px-6 flex flex-col gap-8">
@@ -229,13 +210,10 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
       </section>
 
       {/* ── Blog — Full-Width Strips ── */}
-      <div className="mx-auto max-w-5xl px-6">
-        <TerrainDivider seed={11} />
-      </div>
       <section id="blog" className="py-24">
         <div className="mx-auto max-w-5xl px-6">
           <RevealGroup>
-            <SectionHeader glyph="blog" title={t("blog.title")} />
+            <SectionHeader title={t("blog.title")} />
           </RevealGroup>
         </div>
         <RevealGroup>
@@ -247,7 +225,6 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
                 className="group relative flex items-center justify-between gap-4 border-b border-border-subtle px-6 py-6 transition-all duration-200 hover:bg-bg-surface/30 sm:px-[calc(50vw-32rem)]"
               >
                 <div className="flex items-center gap-4">
-                  <Glyph name="blog" size={12} className="shrink-0 text-text-tertiary opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
                   <span className="hidden sm:inline shrink-0 font-mono text-[11px] tracking-wide text-text-tertiary">
                     {post.formattedDate}
                   </span>
@@ -268,25 +245,19 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
       </section>
 
       {/* ── Resume — 2x2 Bento ── */}
-      <div className="mx-auto max-w-5xl px-6">
-        <TerrainDivider seed={17} />
-      </div>
       <section id="resume" className="mx-auto max-w-5xl px-6 py-24">
         <RevealGroup>
-          <SectionHeader glyph="resume" title={t("resume.title")} />
+          <SectionHeader title={t("resume.title")} />
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {[
-              { glyph: "about" as GlyphName, label: t("resume.education"), value: t("resume.education.value") },
-              { glyph: "projects" as GlyphName, label: t("resume.experience"), value: t("resume.experience.value") },
-              { glyph: "capabilities" as GlyphName, label: t("resume.awards"), value: t("resume.awards.value") },
+              { label: t("resume.education"), value: t("resume.education.value") },
+              { label: t("resume.experience"), value: t("resume.experience.value") },
+              { label: t("resume.awards"), value: t("resume.awards.value") },
             ].map((item) => (
               <div key={item.label} className="rounded-xl border border-border-subtle bg-bg-elevated p-5">
-                <div className="flex items-center gap-2 mb-2">
-                  <Glyph name={item.glyph} size={12} className="text-text-tertiary" />
-                  <h3 className="font-mono text-[11px] uppercase tracking-[0.05em] text-text-tertiary">
-                    {item.label}
-                  </h3>
-                </div>
+                <h3 className="font-mono text-[11px] uppercase tracking-[0.05em] text-text-tertiary mb-2">
+                  {item.label}
+                </h3>
                 <p className="font-body text-sm leading-relaxed text-text-secondary">{item.value}</p>
               </div>
             ))}
