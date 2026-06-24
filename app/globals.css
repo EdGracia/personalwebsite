@@ -80,6 +80,11 @@ html::-webkit-scrollbar {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes underlineIn {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
 @keyframes subtlePulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
@@ -111,13 +116,6 @@ html::-webkit-scrollbar {
   50% { backdrop-filter: blur(1.5px); -webkit-backdrop-filter: blur(1.5px); }
 }
 
-.page-transition {
-  animation: fadeIn 0.35s ease-out forwards;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .page-transition { animation: none; }
-}
 
 :focus-visible {
   outline: 2px solid var(--accent);

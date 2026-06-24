@@ -34,8 +34,8 @@ function createGrains(w: number, h: number): Grain[] {
       y: Math.random() * h,
       vx: 0,
       vy: 0,
-      size: isSpice ? 1 : layer < 0.33 ? 0.6 : layer < 0.66 ? 1 : 1.5,
-      opacity: isSpice ? 0.4 : layer < 0.33 ? 0.12 : layer < 0.66 ? 0.2 : 0.35,
+      size: isSpice ? 0.7 : layer < 0.33 ? 0.4 : layer < 0.66 ? 0.7 : 1,
+      opacity: isSpice ? 0.25 : layer < 0.33 ? 0.08 : layer < 0.66 ? 0.12 : 0.2,
       layer,
       isSpice,
     };
@@ -101,7 +101,7 @@ export default function SandField() {
       }
 
       const sandColor = "160, 140, 110";
-      const sandAlpha = 0.3 * densityMultiplier;
+      const sandAlpha = 0.18 * densityMultiplier;
       const sandGrains = grains.current.filter((g) => !g.isSpice);
       ctx.beginPath();
       for (const g of sandGrains) {
@@ -118,7 +118,7 @@ export default function SandField() {
           ctx.moveTo(g.x + g.size, g.y);
           ctx.arc(g.x, g.y, g.size, 0, Math.PI * 2);
         }
-        ctx.fillStyle = `rgba(180, 120, 40, ${0.15 * spiceIntensity})`;
+        ctx.fillStyle = `rgba(180, 120, 40, ${0.08 * spiceIntensity})`;
         ctx.fill();
       }
 

@@ -17,7 +17,7 @@ export default function Navbar() {
     { href: "/#about", label: t("nav.about"), id: "about" },
     { href: "/projects", label: t("nav.projects"), id: "projects" },
     { href: "/blog", label: t("nav.blog"), id: "blog" },
-    { href: "/#resume", label: t("nav.resume"), id: "resume" },
+    { href: "/resume", label: t("nav.resume"), id: "resume" },
   ];
 
   useEffect(() => {

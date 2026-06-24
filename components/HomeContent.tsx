@@ -90,7 +90,7 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
       <section id="about" className="py-24">
         <div className="mx-auto max-w-5xl px-6">
           <RevealGroup>
-            <SectionHeader title={t("about.title")} />
+            <SectionHeader title={t("about.title")} sectionId="about" />
           </RevealGroup>
         </div>
         <RevealGroup>
@@ -136,7 +136,7 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
       {/* ── Capabilities — Bento Grid ── */}
       <section id="capabilities" className="mx-auto max-w-5xl px-6 py-24">
         <RevealGroup>
-          <SectionHeader title={t("capabilities.title")} />
+          <SectionHeader title={t("capabilities.title")} sectionId="capabilities" />
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {skillGroups.map(({ category, items, span }) => (
               <SpiceBloom
@@ -166,7 +166,7 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
       <section id="projects" className="py-24">
         <div className="mx-auto max-w-5xl px-6">
           <RevealGroup>
-            <SectionHeader title={t("projects.title")} />
+            <SectionHeader title={t("projects.title")} sectionId="projects" />
           </RevealGroup>
         </div>
         <div className="mx-auto max-w-5xl px-6 flex flex-col gap-8">
@@ -213,7 +213,7 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
       <section id="blog" className="py-24">
         <div className="mx-auto max-w-5xl px-6">
           <RevealGroup>
-            <SectionHeader title={t("blog.title")} />
+            <SectionHeader title={t("blog.title")} sectionId="blog" />
           </RevealGroup>
         </div>
         <RevealGroup>
@@ -247,7 +247,7 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
       {/* ── Resume — 2x2 Bento ── */}
       <section id="resume" className="mx-auto max-w-5xl px-6 py-24">
         <RevealGroup>
-          <SectionHeader title={t("resume.title")} />
+          <SectionHeader title={t("resume.title")} sectionId="resume" />
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {[
               { label: t("resume.education"), value: t("resume.education.value") },

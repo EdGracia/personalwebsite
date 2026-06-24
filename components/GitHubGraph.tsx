@@ -23,10 +23,10 @@ export default async function GitHubGraph() {
 
   const levelColors: Record<number, string> = {
     0: "bg-bg-surface",
-    1: "bg-[rgba(212,162,76,0.2)]",
-    2: "bg-[rgba(212,162,76,0.4)]",
-    3: "bg-[rgba(212,162,76,0.65)]",
-    4: "bg-[rgba(212,162,76,0.9)]",
+    1: "bg-[rgba(57,211,83,0.2)]",
+    2: "bg-[rgba(57,211,83,0.4)]",
+    3: "bg-[rgba(57,211,83,0.65)]",
+    4: "bg-[rgba(57,211,83,0.9)]",
   };
 
   return (

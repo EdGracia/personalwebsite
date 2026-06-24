@@ -2,26 +2,6 @@
 
 import { useEffect } from "react";
 
-const COLOR_STOPS = [
-  [244, 237, 228],  // #f4ede4 — morning parchment
-  [250, 246, 240],  // #faf6f0 — high-noon sand
-  [237, 224, 208],  // #ede0d0 — amber dusk
-] as const;
-
-function lerpColor(
-  stops: readonly (readonly [number, number, number])[],
-  t: number,
-): string {
-  const segment = t < 0.5 ? 0 : 1;
-  const localT = segment === 0 ? t * 2 : (t - 0.5) * 2;
-  const from = stops[segment];
-  const to = stops[segment + 1];
-  const r = Math.round(from[0] + (to[0] - from[0]) * localT);
-  const g = Math.round(from[1] + (to[1] - from[1]) * localT);
-  const b = Math.round(from[2] + (to[2] - from[2]) * localT);
-  return `rgb(${r}, ${g}, ${b})`;
-}
-
 export default function ScrollEngine() {
   useEffect(() => {
     let ticking = false;
@@ -40,8 +20,6 @@ export default function ScrollEngine() {
       const midOffset = reducedMotion ? 0 : scrollY * 0.5;
       root.style.setProperty("--scroll-far", `${farOffset}px`);
       root.style.setProperty("--scroll-mid", `${midOffset}px`);
-
-      root.style.setProperty("--bg-deep", lerpColor(COLOR_STOPS, progress));
 
       ticking = false;
     };

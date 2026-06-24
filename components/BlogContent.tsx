@@ -17,7 +17,10 @@ export default function BlogContent({ posts }: { posts: Post[] }) {
 
   return (
     <main className="mx-auto w-full max-w-5xl px-6 py-24">
-      <h1 className="font-display text-4xl font-bold tracking-tight text-text-primary">{t("blog.title")}</h1>
+      <h1 className="relative inline-block font-display text-4xl font-bold tracking-tight text-text-primary">
+        {t("blog.title")}
+        <span className="absolute -bottom-1 left-0 h-px bg-accent animate-[underlineIn_0.5s_ease-out_0.5s_forwards] w-0" />
+      </h1>
       <p className="mt-3 font-body text-text-secondary">
         {t("blog.subtitle")}
       </p>
