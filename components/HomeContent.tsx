@@ -217,12 +217,12 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
           </RevealGroup>
         </div>
         <RevealGroup>
-          <div className="flex flex-col">
+          <div className="mx-auto max-w-5xl px-6 flex flex-col">
             {recentPosts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group relative flex items-center justify-between gap-4 border-b border-border-subtle px-6 py-6 transition-all duration-200 hover:bg-bg-surface/30 sm:px-[calc(50vw-32rem)]"
+                className="group relative flex items-center justify-between gap-4 border-b border-border-subtle py-6 transition-all duration-200 hover:bg-bg-surface/30"
               >
                 <div className="flex items-center gap-4">
                   <span className="hidden sm:inline shrink-0 font-mono text-[11px] tracking-wide text-text-tertiary">
@@ -235,7 +235,7 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
                 <FiArrowUpRight className="shrink-0 text-text-tertiary transition-all duration-200 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0" />
               </Link>
             ))}
-            <div className="mx-auto max-w-5xl px-6 mt-4">
+            <div className="mt-4">
               <Link href="/blog" className="inline-block font-display text-sm text-text-tertiary transition-colors hover:text-accent">
                 {t("blog.allPosts")}
               </Link>

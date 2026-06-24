@@ -34,8 +34,6 @@ function drawParticles(
 
   ctx.clearRect(0, 0, w, h);
   const now = performance.now();
-  const isDark = document.documentElement.classList.contains("dark");
-
   const alive = particles.filter((p) => now - p.born < PARTICLE_LIFE);
   particles.length = 0;
   particles.push(...alive);
@@ -49,9 +47,7 @@ function drawParticles(
     const alpha = (1 - age) * 0.7;
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.size * (1 - age * 0.3), 0, Math.PI * 2);
-    ctx.fillStyle = isDark
-      ? `rgba(212, 162, 76, ${alpha})`
-      : `rgba(180, 120, 40, ${alpha})`;
+    ctx.fillStyle = `rgba(180, 120, 40, ${alpha})`;
     ctx.fill();
   }
 

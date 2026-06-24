@@ -58,8 +58,6 @@ export default function SpiceCursor() {
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width / (window.devicePixelRatio || 1), canvas.height / (window.devicePixelRatio || 1));
       const now = performance.now();
-      const isDark = document.documentElement.classList.contains("dark");
-
       particles.current = particles.current.filter(
         (p) => now - p.born < PARTICLE_LIFE
       );
@@ -69,9 +67,7 @@ export default function SpiceCursor() {
         const alpha = (1 - age) * 0.6;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size * (1 - age * 0.5), 0, Math.PI * 2);
-        ctx.fillStyle = isDark
-          ? `rgba(212, 162, 76, ${alpha})`
-          : `rgba(180, 120, 40, ${alpha})`;
+        ctx.fillStyle = `rgba(180, 120, 40, ${alpha})`;
         ctx.fill();
       }
 

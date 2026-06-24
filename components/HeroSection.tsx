@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FiGithub, FiMail } from "react-icons/fi";
+import { FiGithub, FiMail, FiMapPin } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
 import { useSyncExternalStore } from "react";
 import Glyph from "./Glyph";
@@ -38,9 +38,9 @@ export default function HeroSection() {
   ];
 
   return (
-    <section id="home" className="relative flex min-h-[85vh] items-center py-24 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none" style={{
-        background: "radial-gradient(ellipse 80% 50% at 50% 80%, var(--accent-glow) 0%, transparent 70%)",
+    <section id="home" className="relative flex min-h-[85vh] items-center py-24">
+      <div className="absolute inset-x-0 top-0 -bottom-48 pointer-events-none" style={{
+        background: "radial-gradient(ellipse 120% 80% at 50% 50%, rgba(26,111,181,0.18) 0%, rgba(26,111,181,0.06) 40%, transparent 70%)",
       }} />
 
       <div className="relative z-10 grid w-full grid-cols-1 gap-8 px-6 sm:grid-cols-[3fr_2fr] sm:items-center sm:gap-12 max-w-[90vw] mx-auto">
@@ -71,9 +71,9 @@ export default function HeroSection() {
 
         <div className="flex flex-col gap-8" style={fadeStyle(600)}>
           <div className="flex items-center gap-3 text-text-tertiary">
-            <Glyph name="home" size={16} />
+            <FiMapPin className="text-sm" />
             <span className="font-mono text-[11px] uppercase tracking-[0.05em]">
-              25.7617°N, 80.1918°W
+              Houston, TX / Miami, FL
             </span>
           </div>
 

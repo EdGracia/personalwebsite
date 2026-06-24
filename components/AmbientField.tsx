@@ -48,8 +48,7 @@ export default function AmbientField() {
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.lineWidth = 1;
-      const isDark = document.documentElement.classList.contains("dark");
-      ctx.strokeStyle = isDark ? "rgba(200, 190, 170, 0.06)" : "rgba(180, 170, 155, 0.12)";
+      ctx.strokeStyle = "rgba(180, 170, 155, 0.12)";
 
       for (let gx = 0; gx <= canvas.width + SPACING; gx += SPACING) {
         ctx.beginPath();

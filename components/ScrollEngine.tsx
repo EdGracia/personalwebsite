@@ -2,16 +2,10 @@
 
 import { useEffect } from "react";
 
-const LIGHT_STOPS = [
+const COLOR_STOPS = [
   [244, 237, 228],  // #f4ede4 — morning parchment
   [250, 246, 240],  // #faf6f0 — high-noon sand
   [237, 224, 208],  // #ede0d0 — amber dusk
-] as const;
-
-const DARK_STOPS = [
-  [10, 10, 18],   // #0a0a12 — pre-dawn blue
-  [15, 16, 24],   // #0f1018 — midnight warm
-  [18, 16, 10],   // #12100a — desert sunset
 ] as const;
 
 function lerpColor(
@@ -47,9 +41,7 @@ export default function ScrollEngine() {
       root.style.setProperty("--scroll-far", `${farOffset}px`);
       root.style.setProperty("--scroll-mid", `${midOffset}px`);
 
-      const isDark = root.classList.contains("dark");
-      const stops = isDark ? DARK_STOPS : LIGHT_STOPS;
-      root.style.setProperty("--bg-deep", lerpColor(stops, progress));
+      root.style.setProperty("--bg-deep", lerpColor(COLOR_STOPS, progress));
 
       ticking = false;
     };

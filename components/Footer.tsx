@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { FiGithub, FiMail } from "react-icons/fi";
+import { FiGithub, FiMail, FiMapPin } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
-import { useEffect, useState } from "react";
 import { useTranslation } from "@/lib/translations";
 
 const socialLinks = [
@@ -14,25 +13,6 @@ const socialLinks = [
 
 export default function Footer() {
   const { locale, setLocale } = useTranslation();
-  const [time, setTime] = useState("");
-
-  useEffect(() => {
-    const update = () => {
-      const now = new Date();
-      setTime(
-        now.toLocaleTimeString("en-US", {
-          timeZone: "America/New_York",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: false,
-        })
-      );
-    };
-    update();
-    const interval = setInterval(update, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <footer className="mt-auto w-full border-t border-border-subtle">
@@ -41,14 +21,10 @@ export default function Footer() {
           <p className="font-mono text-[11px] tracking-wide text-text-tertiary">
             © {new Date().getFullYear()} Ed Gracia
           </p>
-          <span className="hidden sm:inline font-mono text-[11px] tracking-wide text-text-tertiary">
-            25.7617°N, 80.1918°W
+          <span className="hidden sm:inline-flex items-center gap-1.5 font-mono text-[11px] tracking-wide text-text-tertiary">
+            <FiMapPin className="text-xs" />
+            Houston, TX / Miami, FL
           </span>
-          {time && (
-            <span className="hidden sm:inline font-mono text-[11px] tracking-wide text-text-tertiary">
-              MIA {time}
-            </span>
-          )}
           <span className="hidden sm:inline-flex items-center gap-1 font-mono text-[11px] tracking-wide">
             <button
               onClick={() => setLocale("en")}

@@ -2,17 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState, useSyncExternalStore } from "react";
-import { useTheme } from "next-themes";
-import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
+import { useEffect, useState } from "react";
+import { FiMenu, FiX } from "react-icons/fi";
 import { useTranslation } from "@/lib/translations";
 
 export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [activeId, setActiveId] = useState("");
-  const { setTheme, resolvedTheme } = useTheme();
-  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { t } = useTranslation();
 
@@ -73,27 +70,9 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          {mounted && (
-            <button
-              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-              className="text-text-tertiary transition-colors hover:text-text-primary"
-              aria-label="Toggle theme"
-            >
-              {resolvedTheme === "dark" ? <FiSun className="text-base" /> : <FiMoon className="text-base" />}
-            </button>
-          )}
         </div>
 
         <div className="flex sm:hidden items-center gap-4">
-          {mounted && (
-            <button
-              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-              className="text-text-tertiary transition-colors hover:text-text-primary"
-              aria-label="Toggle theme"
-            >
-              {resolvedTheme === "dark" ? <FiSun className="text-base" /> : <FiMoon className="text-base" />}
-            </button>
-          )}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="text-text-tertiary transition-colors hover:text-text-primary"

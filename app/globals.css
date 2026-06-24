@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
-
 html {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -29,27 +27,6 @@ html::-webkit-scrollbar {
   --status-success-bg: rgba(46, 139, 87, 0.1);
   --status-danger: #c0392b;
   --status-danger-bg: rgba(192, 57, 43, 0.1);
-}
-
-.dark {
-  --bg-deep: #0a0a12;
-  --bg-base: #0f0f1a;
-  --bg-elevated: #161624;
-  --bg-surface: #1c1c2e;
-  --border-subtle: #1e1e32;
-  --border-active: #2a2a42;
-  --text-primary: #e8e2d8;
-  --text-secondary: #9a9080;
-  --text-tertiary: #5a5448;
-  --accent: #d4a24c;
-  --accent-muted: #8a7040;
-  --accent-glow: rgba(212, 162, 76, 0.15);
-  --signal: #e8724a;
-  --signal-bg: rgba(232, 114, 74, 0.1);
-  --status-success: #4ade80;
-  --status-success-bg: rgba(74, 222, 128, 0.1);
-  --status-danger: #f87171;
-  --status-danger-bg: rgba(248, 113, 113, 0.1);
 }
 
 @theme inline {

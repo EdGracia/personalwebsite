@@ -69,7 +69,6 @@ export default function SandField() {
       const { w, h } = dims.current;
       ctx.clearRect(0, 0, w, h);
 
-      const isDark = document.documentElement.classList.contains("dark");
       const progress = parseFloat(
         document.documentElement.style.getPropertyValue("--scroll-progress") || "0"
       );
@@ -101,8 +100,8 @@ export default function SandField() {
         if (g.y < -10) { g.y = h + 10; g.vx = 0; }
       }
 
-      const sandColor = isDark ? "210, 190, 160" : "160, 140, 110";
-      const sandAlpha = (isDark ? 0.25 : 0.3) * densityMultiplier;
+      const sandColor = "160, 140, 110";
+      const sandAlpha = 0.3 * densityMultiplier;
       const sandGrains = grains.current.filter((g) => !g.isSpice);
       ctx.beginPath();
       for (const g of sandGrains) {
@@ -119,9 +118,7 @@ export default function SandField() {
           ctx.moveTo(g.x + g.size, g.y);
           ctx.arc(g.x, g.y, g.size, 0, Math.PI * 2);
         }
-        ctx.fillStyle = isDark
-          ? `rgba(212, 162, 76, ${0.2 * spiceIntensity})`
-          : `rgba(180, 120, 40, ${0.15 * spiceIntensity})`;
+        ctx.fillStyle = `rgba(180, 120, 40, ${0.15 * spiceIntensity})`;
         ctx.fill();
       }
 

@@ -10,7 +10,6 @@ import SpiceCursor from "@/components/SpiceCursor";
 import { SandInteractionProvider } from "@/components/SandInteractionContext";
 import ScrollEngine from "@/components/ScrollEngine";
 import PageTransition from "@/components/PageTransition";
-import ThemeProvider from "@/components/ThemeProvider";
 import LanguageProvider from "@/components/LanguageProvider";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -32,9 +31,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${instrumentSans.variable} ${geist.variable} ${jetbrainsMono.variable} h-full antialiased scroll-smooth`} suppressHydrationWarning>
-      <body className="min-h-full flex flex-col bg-bg-deep text-text-primary" suppressHydrationWarning>
-        <ThemeProvider>
+    <html lang="en" className={`${instrumentSans.variable} ${geist.variable} ${jetbrainsMono.variable} h-full antialiased scroll-smooth`}>
+      <body className="min-h-full flex flex-col bg-bg-deep text-text-primary">
           <LanguageProvider>
             <SandInteractionProvider>
               <ParallaxLayer />
@@ -52,7 +50,6 @@ export default function RootLayout({
             </SandInteractionProvider>
           </LanguageProvider>
           <Analytics />
-        </ThemeProvider>
       </body>
     </html>
   );
