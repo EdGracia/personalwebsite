@@ -32,7 +32,6 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
   }[] = [
     {
       category: t("capabilities.languages"),
-      span: "col-span-2 row-span-2",
       items: [
         { icon: SiCplusplus, label: "C++" },
         { icon: SiC, label: "C" },
@@ -143,19 +142,18 @@ export default function HomeContent({ recentPosts, githubGraph }: { recentPosts:
       <section id="capabilities" className="mx-auto max-w-5xl px-6 py-24">
         <RevealGroup>
           <SectionHeader title={t("capabilities.title")} sectionId="capabilities" />
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {skillGroups.map(({ category, items, span }) => (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {skillGroups.map(({ category, items }) => (
               <SpiceBloom
                 key={category}
-                className={span ?? ""}
               >
-                <div className="group h-full rounded-xl border border-border-subtle bg-bg-surface/50 px-6 pt-4 pb-6 transition-all duration-300 hover:border-border-active hover:bg-bg-surface">
+                <div className="h-full rounded-xl border border-border-subtle bg-bg-surface/50 px-6 pt-4 pb-6">
                   <h3 className="font-mono text-[11px] font-medium uppercase tracking-[0.05em] text-text-tertiary mb-4">
                     {category}
                   </h3>
                   <div className="flex flex-col gap-2.5">
                     {items.map(({ icon: Icon, label }) => (
-                      <span key={label} className="flex items-center gap-2.5 font-mono text-sm text-text-secondary transition-all duration-200 hover:text-text-primary hover:translate-x-1 cursor-default">
+                      <span key={label} className="flex items-center gap-2.5 font-mono text-sm text-text-secondary cursor-default">
                         <Icon className="text-sm shrink-0 text-text-tertiary" />
                         {label}
                       </span>

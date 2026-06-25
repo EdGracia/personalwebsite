@@ -10,7 +10,7 @@ interface SectionHeaderProps {
 const prefersReducedMotion = () =>
   typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-export default function SectionHeader({ title, sectionId }: SectionHeaderProps) {
+export default function SectionHeader({ title }: SectionHeaderProps) {
   const ref = useRef<HTMLDivElement>(null);
   const reducedMotion = useSyncExternalStore(
     () => () => {},
@@ -18,8 +18,6 @@ export default function SectionHeader({ title, sectionId }: SectionHeaderProps) 
     () => false
   );
   const [visible, setVisible] = useState(false);
-  const [inView, setInView] = useState(false);
-
   useEffect(() => {
     if (reducedMotion) return;
     const el = ref.current;
@@ -37,18 +35,6 @@ export default function SectionHeader({ title, sectionId }: SectionHeaderProps) 
     return () => observer.disconnect();
   }, [reducedMotion]);
 
-  useEffect(() => {
-    if (!sectionId) return;
-    const section = document.getElementById(sectionId);
-    if (!section) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.5, rootMargin: "-10% 0px -10% 0px" }
-    );
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, [sectionId]);
-
   const show = reducedMotion || visible;
 
   return (
@@ -62,7 +48,7 @@ export default function SectionHeader({ title, sectionId }: SectionHeaderProps) 
       >
         {title}
         <span
-          className={`absolute -bottom-1 left-0 h-px bg-accent transition-all duration-500 ease-out group-hover:w-full ${inView ? "w-full" : "w-0"}`}
+          className="absolute -bottom-1 left-0 h-px w-full bg-accent"
         />
       </h2>
       <div
